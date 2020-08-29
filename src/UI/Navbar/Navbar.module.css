@@ -1,0 +1,61 @@
+.navbar {
+  overflow: hidden;
+  background-color: #E6EED6;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display:table;
+  table-layout: fixed;
+}
+
+.navbar a {
+  display: table-cell;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a.active {
+  background-color: #BBC5AA;
+}
+
+.icontext {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar {
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .navbar a {
+    margin: 20px 3px 20px 3px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: inline-block;
+    border-radius: 60px;
+
+  }
+
+  .icontext {
+    display: inline-block;
+    color: #333333;
+  }
+
+  .navbar a:hover {
+    background-color: #BBC5AA;
+  }
+
+  .navbar img {
+    padding: 0px 8px 0px 8px;
+  }
+}
