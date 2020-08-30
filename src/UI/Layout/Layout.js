@@ -7,9 +7,25 @@ import Add from '../../Components/Add/Add';
 import Popular from '../../Components/Popular/Popular';
 import Profile from '../../Components/Profile/Profile';
 import { connect } from 'react-redux';
+import SideDrawer from '../SideDrawer/SideDrawer';
+import Toolbar from '../Toolbar/Toolbar';
 
 
 class Layout extends Component {
+  state = {
+      showSideDrawer: false
+  }
+
+  sideDrawerClosedHandler = () => {
+      this.setState( { showSideDrawer: false } );
+  }
+
+  sideDrawerToggleHandler = () => {
+      this.setState( ( prevState ) => {
+          return { showSideDrawer: !prevState.showSideDrawer };
+      } );
+  }
+
   render() {
     let component = null;
     switch (this.props.sp) {
@@ -29,8 +45,14 @@ class Layout extends Component {
         component = <Profile />;
         break;
     }
+
     return (
       <div className={classes.main}>
+      <Toolbar
+          drawerToggleClicked={this.sideDrawerToggleHandler} />
+      <SideDrawer
+          open={this.state.showSideDrawer}
+          closed={this.sideDrawerClosedHandler} />
         {component}
         <Navbar />
       </div>

@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <Aux>
-      This is the Home page
+      This is home page
       </Aux>
     )
   }

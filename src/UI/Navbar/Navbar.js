@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import classes from './Navbar.module.css';
 import Aux from '../AuxFolder/Auxiliary';
-import Home from '../../assets/images/home.png';
-import Add from '../../assets/images/add.png';
-import Profile from '../../assets/images/profile.png';
-import Search from '../../assets/images/search.png';
-import Trophy from '../../assets/images/trophy.png';
+import Home from '../../assets/icons/home.png';
+import Add from '../../assets/icons/add.png';
+import Profile from '../../assets/icons/profile.png';
+import Search from '../../assets/icons/search.png';
+import Trophy from '../../assets/icons/trophy.png';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions'
 

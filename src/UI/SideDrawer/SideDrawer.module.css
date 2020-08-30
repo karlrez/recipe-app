@@ -1,0 +1,61 @@
+.SideDrawer {
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    z-index: 200;
+    background-color: #E6EED6;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+}
+
+.Open {
+    transform: translateY(0);
+}
+
+.Close {
+    transform: translateX(100%);
+}
+
+.Logo {
+    height: 32px;
+}
+
+.LogoText {
+  font-size: 32px;
+}
+
+.OptionsList {
+
+}
+
+.OptionsList a {
+  
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 24px;
+  color: #818181;
+  display: inline-block;
+  border-radius: 60px;
+
+}
+
+.OptionsList a:hover {
+  background-color: #BBC5AA;
+}
+
+.OptionsList img {
+  padding: 0px 8px 0px 8px;
+}
+
+.IconText {
+  display: inline-block;
+  color: #333333;
+}
+
+@media only screen and (min-width: 600px) {
+
+}
