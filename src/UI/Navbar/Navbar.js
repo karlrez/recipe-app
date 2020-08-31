@@ -7,7 +7,7 @@ import Profile from '../../assets/icons/profile.png';
 import Search from '../../assets/icons/search.png';
 import Trophy from '../../assets/icons/trophy.png';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions'
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class Navbar extends Component {
   state = {
@@ -16,6 +16,7 @@ class Navbar extends Component {
 
 
   render() {
+    console.log("sp: " + this.props.sp);
     return (
       <Aux>
         <div className={classes.navbar}>
@@ -63,7 +64,7 @@ class Navbar extends Component {
 // Gets value from global state, so we can use in this component
 const mapStateToProps = state => {
   return {
-    sp: state.selectedPage
+    sp: state.navbar.selectedPage
   };
 };
 

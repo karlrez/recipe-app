@@ -1,38 +1,73 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './SideDrawer.module.css';
 import Backdrop from './Backdrop/Backdrop';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import Logo from '../../assets/icons/recipe.png';
 import Edit from '../../assets/icons/edit.png';
 import Logout from '../../assets/icons/logout.png';
+import Login from '../../assets/icons/login.png';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const sideDrawer = ( props ) => {
+class SideDrawer extends Component {
+  state = {
+
+  }
+
+  render() {
     let attachedClasses = [classes.SideDrawer, classes.Close];
-    if (props.open) {
+    if (this.props.open) {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
 
+    let loginLink;
+    if (this.props.isAuthenticated) {
+      loginLink = (
+        <NavLink 
+          to="/logout"
+          exact="/logout">
+          <img src={Logout} alt="Logout Icon" />
+            Logout
+        </NavLink>
+      )
+    } else {
+      loginLink = (
+        <NavLink 
+          to="/login"
+          exact="/login">
+          <img src={Login} alt="Login Icon" />
+            Login
+        </NavLink>
+      )
+    }
+    
     return (
-        <Aux>
-            <Backdrop show={props.open} clicked={props.closed}/>
-            <div className={attachedClasses.join(' ')}>
-                <div className={classes.LogoText}>
-                  <img src={Logo} className={classes.Logo} alt="App Logo" />
-                  RecipeGram
-                </div>
-                  <div className={classes.OptionsList}>
-                    <a href="#">
-                      <img src={Edit} alt="Edit Icon" />
-                      <span className={classes.IconText}>Edit Profile</span>
-                    </a>
-                    <a href="#">
-                      <img src={Logout} alt="Logout Icon" />
-                      <span className={classes.IconText}>Logout</span>
-                    </a>
-                  </div>
-            </div>
-        </Aux>
-    );
+      <Aux>
+        <Backdrop show={this.props.open} clicked={this.props.closed}/>
+        <div className={attachedClasses.join(' ')}>
+          <div className={classes.LogoText}>
+            <img src={Logo} className={classes.Logo} alt="App Logo" />
+            RecipeGram
+          </div>
+        <div className={classes.OptionsList}>
+          <NavLink 
+            to="#"
+            exact="#">
+            <img src={Edit} alt="Edit Icon" />
+            Edit Profile
+          </NavLink>
+          { loginLink }
+        </div>
+        </div>
+      </Aux>
+    )
+  } 
 };
 
-export default sideDrawer;
+const mapStateToProps = state => {
+  return {
+      isAuthenticated: state.auth.token !== null,
+  };
+};
+
+export default connect(mapStateToProps)(SideDrawer);

@@ -62,7 +62,7 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    sp: state.selectedPage
+    sp: state.navbar.selectedPage
   };
 };
 
