@@ -31,11 +31,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         selectedPage: 5
       }
-    default:
-      return {
-        ...state,
-        selectedPage: 1
-      }
+    /**
+     * All actions are passed to this reducer because of combineReducer, so default
+     * will just not change anything
+    */
+    default: return state;
   }
 };
 

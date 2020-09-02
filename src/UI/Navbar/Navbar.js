@@ -16,7 +16,6 @@ class Navbar extends Component {
 
 
   render() {
-    console.log("sp: " + this.props.sp);
     return (
       <Aux>
         <div className={classes.navbar}>

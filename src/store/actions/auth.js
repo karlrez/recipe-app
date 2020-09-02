@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios';
 import * as actionTypes from './actionTypes';
 
 
@@ -9,21 +9,19 @@ export const auth = (email, password) => {
             email: email,
             password: password
         };
-        let url = 'http://127.0.0.1:8000/user/token/';
 
-        axios.post(url, authData)
+        axios.post('/user/token/', authData)
             .then(response => {
                 console.log(response);
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(response.data.token));
-                console.log(response.data);
                 dispatch(checkAuthTimeout(3600));
             })
             .catch(err => {
-                //console.log(err.response); more detailed error info
-                console.log(err.response.request.responseText);
+                //console.log(err.response); //more detailed error info
+                //console.log(err.response.request.responseText);
                 dispatch(authFail(err.response.request.responseText));
             });
     };

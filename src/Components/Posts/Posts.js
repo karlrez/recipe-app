@@ -3,16 +3,16 @@ import Aux from '../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-class Popular extends Component {
+class Posts extends Component {
 
   componentDidMount() {
-    this.props.getRecipeInfo();
+    this.props.getRecipeInfo(this.props.token);
   }
 
   render() {
     return (
       <Aux>
-      This is the Popular page
+      <div>Posts go here</div>
       </Aux>
     )
   }
@@ -20,15 +20,15 @@ class Popular extends Component {
 
 const mapStateToProps = state => {
   return {
+      token: state.auth.token,
       recipes: state.recipeInfo.recipes
   };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // no token required for this api call
-        getRecipeInfo: () => dispatch(actions.recipeInfo(null, '/recipes/popular/'))
+        getRecipeInfo: (token) => dispatch(actions.recipeInfo(token, '/recipes/my-recipes/'))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Popular);
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

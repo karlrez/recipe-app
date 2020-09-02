@@ -9,6 +9,8 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import navbarReducer from './store/reducers/navbar';
 import authReducer from './store/reducers/auth';
+import profileInfoReducer from './store/reducers/profileInfo';
+import recipeInfoReducer from './store/reducers/recipeInfo';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -16,6 +18,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   navbar: navbarReducer,
   auth: authReducer,
+  profileInfo: profileInfoReducer,
+  recipeInfo: recipeInfoReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

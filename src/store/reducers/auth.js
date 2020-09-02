@@ -3,7 +3,7 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    token: null,
+    token: null,//"9f813fd095d89be1fc50d9d45977933e59dbd31b",
     error: null,
     loading: false,
     authRedirectPath: '/'
@@ -14,7 +14,7 @@ const authStart = ( state, action ) => {
 };
 
 const authSuccess = (state, action) => {
-    return updateObject( state, { 
+    return updateObject( state, {
         token: action.token,
         error: null,
         loading: false
@@ -43,8 +43,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
-        default:
-            return state;
+        default: return state;
     }
 };
 
