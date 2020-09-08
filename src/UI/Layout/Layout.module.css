@@ -1,12 +1,12 @@
 .main {
-  font-size: 40px;
+  font-size: 18px;
   margin-top: 45px;
 }
 
 @media only screen and (min-width: 600px) {
   .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    margin-top: 65px;
+    margin-left: 156px; /* Same as the width of the sidenav */
+    margin-top: 60px;
     padding: 0px 16px;
   }
 }

@@ -10,7 +10,10 @@ import { Provider } from 'react-redux';
 import navbarReducer from './store/reducers/navbar';
 import authReducer from './store/reducers/auth';
 import profileInfoReducer from './store/reducers/profileInfo';
-import recipeInfoReducer from './store/reducers/recipeInfo';
+import profileRecipesReducer from './store/reducers/profileRecipes';
+import homeRecipeReducer from './store/reducers/homeRecipes';
+import popularRecipeReducer from './store/reducers/popularRecipes';
+import searchRecipeReducer from './store/reducers/searchRecipes';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -19,7 +22,10 @@ const rootReducer = combineReducers({
   navbar: navbarReducer,
   auth: authReducer,
   profileInfo: profileInfoReducer,
-  recipeInfo: recipeInfoReducer
+  profileRecipes: profileRecipesReducer,
+  homeRecipes: homeRecipeReducer,
+  popularRecipes: popularRecipeReducer,
+  searchRecipes: searchRecipeReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

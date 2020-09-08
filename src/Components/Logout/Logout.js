@@ -16,6 +16,7 @@ class Logout extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         this.props.logout();
+        window.location.reload(false);
     }
 
     backButtonHandler = (event) => {

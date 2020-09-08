@@ -2,9 +2,9 @@ import axios from '../../axios';
 import * as actionTypes from './actionTypes';
 
 
-export const recipeInfo = (token, url) => {
+export const profileRecipes = (token, url) => {
     return dispatch => {
-        dispatch(recipeInfoStart());
+        dispatch(profileRecipesStart());
 
         const header = {
             headers: { Authorization: 'Token ' + token }
@@ -12,34 +12,34 @@ export const recipeInfo = (token, url) => {
         console.log(url + "\n" + token);
         axios.get(url, header)
             .then(response => {
-                console.log("recipeInfo: \n" + JSON.stringify(response.data));
-                dispatch(recipeInfoSuccess(response.data));
+                console.log("profileRecipes: \n" + JSON.stringify(response.data));
+                dispatch(profileRecipesSuccess(response.data));
             })
             .catch(err => {
                 //console.log(err.response); //more detailed error info
                 //console.log(err.response.request.responseText);
                 console.log(err.response);
-                dispatch(recipeInfoFail(err.response));
+                dispatch(profileRecipesFail(err.response));
             });
     };
 };
 
-export const recipeInfoStart = () => {
+export const profileRecipesStart = () => {
     return {
-        type: actionTypes.RECIPE_INFO_START
+        type: actionTypes.PROFILE_RECIPES_START
     };
 };
 
-export const recipeInfoSuccess = (data) => {
+export const profileRecipesSuccess = (data) => {
     return {
-        type: actionTypes.RECIPE_INFO_SUCCESS,
+        type: actionTypes.PROFILE_RECIPES_SUCCESS,
         recipes: data
     };
 };
 
-export const recipeInfoFail = (error) => {
+export const profileRecipesFail = (error) => {
     return {
-        type: actionTypes.RECIPE_INFO_FAIL,
+        type: actionTypes.PROFILE_RECIPES_FAIL,
         loading: false,
         error: error
     };

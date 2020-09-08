@@ -5,22 +5,24 @@ import { updateObject } from '../utility';
 const initialState = {
     recipes: null,
     error: null,
-    loading: false
+    loading: false,
+    loaded: false,
 };
 
-const recipeInfoStart = ( state, action ) => {
+const profileRecipesStart = ( state, action ) => {
     return updateObject( state, { error: null, loading: true } );
 };
 
-const recipeInfoSuccess = (state, action) => {
+const profileRecipesSuccess = (state, action) => {
     return updateObject( state, {
         recipes: action.recipes,
         error: null,
-        loading: false
+        loading: false,
+        loaded: true,
      } );
 };
 
-const recipeInfoFail = (state, action) => {
+const profileRecipesFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: action.false
@@ -29,9 +31,9 @@ const recipeInfoFail = (state, action) => {
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.RECIPE_INFO_START: return recipeInfoStart(state, action);
-        case actionTypes.RECIPE_INFO_SUCCESS: return recipeInfoSuccess(state, action);
-        case actionTypes.RECIPE_INFO_FAIL: return recipeInfoFail(state, action);
+        case actionTypes.PROFILE_RECIPES_START: return profileRecipesStart(state, action);
+        case actionTypes.PROFILE_RECIPES_SUCCESS: return profileRecipesSuccess(state, action);
+        case actionTypes.PROFILE_RECIPES_FAIL: return profileRecipesFail(state, action);
         default:
             return state;
     }

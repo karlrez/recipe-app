@@ -10,5 +10,17 @@ export {
 } from './profileInfo';
 
 export {
-    recipeInfo,
-} from './recipeInfo';
+    profileRecipes,
+} from './profileRecipes';
+
+export {
+    homeRecipes,
+} from './homeRecipes';
+
+export {
+    popularRecipes,
+} from './popularRecipes';
+
+export {
+    searchRecipes,
+} from './searchRecipes';

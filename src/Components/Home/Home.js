@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import Posts from '../Posts/Posts';
 
 class Home extends Component {
 
   componentDidMount() {
-    if (this.props.token !== null) {
-      this.props.getProfileInfo(this.props.token);
-      this.props.getRecipeInfo(this.props.token);
-    }
+
   }
 
   render() {
@@ -22,8 +19,8 @@ class Home extends Component {
         }
     return (
       <Aux>
-      <p>This is home page</p>
       {loginMessage}
+      <Posts />
       </Aux>
     )
   }
@@ -32,18 +29,9 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
       token: state.auth.token,
-      recipes: state.recipeInfo.recipes,
+      recipes: state.profileRecipes.recipes,
       username: state.profileInfo.username,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-      // no token required for this api call
-      getRecipeInfo: (token) => dispatch(actions.recipeInfo(token, '/recipes/feed/')),
-      getProfileInfo: (token) => dispatch(actions.profileInfo(token))
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

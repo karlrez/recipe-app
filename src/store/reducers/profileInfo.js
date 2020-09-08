@@ -12,7 +12,8 @@ const initialState = {
     date_joined: null,
     profile_pic: null,
     error: null,
-    loading: false
+    loading: false,
+    loaded: false,
 };
 
 const profileInfoStart = ( state, action ) => {
@@ -30,7 +31,8 @@ const profileInfoSuccess = (state, action) => {
         date_joined: action.date_joined,
         profile_pic: action.profile_pic,
         error: null,
-        loading: false
+        loading: false,
+        loaded: true,
      } );
 };
 
