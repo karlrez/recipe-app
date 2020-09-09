@@ -3,38 +3,35 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    recipes: [],
     error: null,
     loading: false,
-    loaded: false,
+    redirectPath: null,
 };
 
-const searchRecipesStart = ( state, action ) => {
+const createUserStart = ( state, action ) => {
     return updateObject( state, { error: null, loading: true } );
 };
 
-const searchRecipesSuccess = (state, action) => {
+const createUserSuccess = (state, action) => {
     return updateObject( state, {
-        recipes: action.recipes,
         error: null,
         loading: false,
-        loaded: true,
+        redirectPath: '/login',
      } );
 };
 
-const searchRecipesFail = (state, action) => {
+const createUserFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
-        loading: action.false,
-        recipes: [],
+        loading: false,
     });
 };
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.SEARCH_RECIPES_START: return searchRecipesStart(state, action);
-        case actionTypes.SEARCH_RECIPES_SUCCESS: return searchRecipesSuccess(state, action);
-        case actionTypes.SEARCH_RECIPES_FAIL: return searchRecipesFail(state, action);
+        case actionTypes.CREATE_USER_START: return createUserStart(state, action);
+        case actionTypes.CREATE_USER_SUCCESS: return createUserSuccess(state, action);
+        case actionTypes.CREATE_USER_FAIL: return createUserFail(state, action);
         default:
             return state;
     }

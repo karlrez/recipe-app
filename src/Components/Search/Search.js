@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import Posts from '../Posts/Posts';
+import UserList from '../UserList/UserList';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
@@ -12,6 +13,7 @@ class Search extends Component {
     ingredient1: null,
     ingredient2: null,
     ingredient3: null,
+    showPosts: true,
   }
 
   handleChange = (event) => {
@@ -26,13 +28,20 @@ class Search extends Component {
     event.preventDefault();
     if (this.state.checked === "tag") {
       this.props.recipeQuery('/recipes/tag/' + this.state.searchInput + '/');
+      this.setState({showPosts:true});
     } else if (this.state.checked === "name") {
       this.props.recipeQuery('/recipes/name/' + this.state.searchInput + '/');
+      this.setState({showPosts:true});
     } else if (this.state.checked === "ingredients") {
       let ingred1 = this.state.ingredient1;
       let ingred2 = this.state.ingredient2 ? '/' + this.state.ingredient2 + '/' : "";
       let ingred3 = this.state.ingredient3 ? this.state.ingredient3 + '/' : "";
       this.props.recipeQuery('recipes/ingredients/' + ingred1 + ingred2 + ingred3);
+      this.setState({showPosts:true});
+    } else if (this.state.checked === "user") {
+      let username = this.state.searchInput;
+      this.props.usersQuery('/user/search-users/' + username);
+      this.setState({showPosts:false});
     }
   }
 
@@ -41,7 +50,7 @@ class Search extends Component {
     let searchInput;
     switch (this.state.checked) {
       case ("tag"):
-        searchPlaceholder = "Search by #tags...";
+        searchPlaceholder = "Search by #tag...";
         searchInput = (
           <input
           name="searchInput"
@@ -77,13 +86,31 @@ class Search extends Component {
           </div>
         );
         break;
+      case ("user"):
+        searchPlaceholder = "Search for a user...";
+        searchInput = (
+          <input
+          name="searchInput"
+          placeholder={searchPlaceholder}
+          onChange= {this.handleChange}/>
+        );
+        break;
     }
 
     let searchMessage = null;
-    if (this.props.recipes === null) {
+    if (this.props.recipes < 1 && this.state.showPosts) {
       searchMessage = (
         <p>Search returned no recipes! :(</p>
       )
+    }else if (this.props.users.length < 1 && !this.state.showPosts) {
+      searchMessage = (
+        <p>Search returned no users! :(</p>
+      )
+    }
+
+    let showPosts = (<Posts />);
+    if (!this.state.showPosts) {
+      showPosts = (<UserList />);
     }
 
     return (
@@ -114,12 +141,21 @@ class Search extends Component {
               checked={this.state.checked === "ingredients"}
               onChange= {this.handleChange} />
           </label>
+          <label>User
+            <input
+              type="radio"
+              name="checked"
+              value="user"
+              checked={this.state.checked === "user"}
+              onChange= {this.handleChange} />
+          </label>
 
             <input type="submit" value="Search!"></input>
         </form>
         
         {searchMessage}
-        <Posts />
+        {showPosts}
+        
       </Aux>
     )
   }
@@ -128,12 +164,14 @@ class Search extends Component {
 const mapStateToProps = state => {
   return {
       recipes: state.searchRecipes.recipes,
+      users: state.searchUsers.users,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
       recipeQuery: (url) => dispatch(actions.searchRecipes(url)),
+      usersQuery: (url) => dispatch(actions.searchUsers(url)),
   };
 };
 

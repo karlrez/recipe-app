@@ -24,3 +24,11 @@ export {
 export {
     searchRecipes,
 } from './searchRecipes';
+
+export {
+    searchUsers,
+} from './searchUsers';
+
+export {
+    createUser,
+} from './createUser';

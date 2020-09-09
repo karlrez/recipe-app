@@ -3,38 +3,38 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    recipes: [],
+    users: [],
     error: null,
     loading: false,
     loaded: false,
 };
 
-const searchRecipesStart = ( state, action ) => {
+const searchUsersStart = ( state, action ) => {
     return updateObject( state, { error: null, loading: true } );
 };
 
-const searchRecipesSuccess = (state, action) => {
+const searchUsersSuccess = (state, action) => {
     return updateObject( state, {
-        recipes: action.recipes,
+        users: action.users,
         error: null,
         loading: false,
         loaded: true,
      } );
 };
 
-const searchRecipesFail = (state, action) => {
+const searchUsersFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: action.false,
-        recipes: [],
+        users: [],
     });
 };
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.SEARCH_RECIPES_START: return searchRecipesStart(state, action);
-        case actionTypes.SEARCH_RECIPES_SUCCESS: return searchRecipesSuccess(state, action);
-        case actionTypes.SEARCH_RECIPES_FAIL: return searchRecipesFail(state, action);
+        case actionTypes.USER_SEARCH_START: return searchUsersStart(state, action);
+        case actionTypes.USER_SEARCH_SUCCESS: return searchUsersSuccess(state, action);
+        case actionTypes.USER_SEARCH_FAIL: return searchUsersFail(state, action);
         default:
             return state;
     }
