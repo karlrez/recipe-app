@@ -3,6 +3,7 @@ import Aux from '../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
+import classes from './CreateUser.module.css';
 
 
 class CreateUser extends Component {
@@ -60,10 +61,12 @@ class CreateUser extends Component {
 
     return (
       <Aux>
-          {redirect}
+        {redirect}
+        <h1>Sign Up</h1>
         <form onSubmit={this.submitHandler}>
             <label>Email
                 <input
+                className={classes.formInput}
                 type="email"
                 name="email"
                 required
@@ -71,23 +74,27 @@ class CreateUser extends Component {
             </label><p></p>
             <label>Username
                 <input
+                className={classes.formInput}
                 name="username"
                 required
                 onChange= {this.handleChange} />
             </label><p></p>
             <label>Full Name
                 <input
+                className={classes.formInput}
                 name="fullName"
                 onChange= {this.handleChange} />
             </label><p></p>
             <label>Title
                 <input
+                className={classes.formInput}
                 name="title"
                 placeholder="Head Chef, Master Cook, etc"
                 onChange= {this.handleChange} />
             </label><p></p>
             <label>Password
                 <input
+                className={classes.formInput}
                 type="password"
                 name="password"
                 required
@@ -95,6 +102,7 @@ class CreateUser extends Component {
             </label><p></p>
             <label>Confirm Password
                 <input
+                className={classes.formInput}
                 type="password"
                 name="password2"
                 required
@@ -102,20 +110,24 @@ class CreateUser extends Component {
             </label><p>{errorMessage}</p>
             <label>Bio
                 <input
+                className={classes.formInput}
                 name="bio"
                 onChange= {this.handleChange} />
             </label><p></p>
             <label>Profile Pic
                 <input
+                className={classes.formInput}
                 name="profilePic"
                 type="file"
                 accept="image/png, image/jpeg"
                 onChange= {this.handleImageChange} />
             </label><p></p>
 
-            <input type="submit" value="Submit"></input>
+            <div className={classes.submitDiv}>
+              <input type="submit" value="Submit" className={classes.submitBtn}></input>
+            </div>
             </form>
-            {errorMessage2}
+            <p>{errorMessage2}</p>
       </Aux>
     )
   }

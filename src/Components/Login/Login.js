@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import * as actions from '../../store/actions/index';
+import classes from './Login.module.css';
 
 class Login extends Component {
     state = {
@@ -44,29 +45,28 @@ class Login extends Component {
     return (
       <Aux>
         {authRedirect}
-        <form onSubmit={this.submitHandler}>
-          <label>
-            Email:
-            <input
-              name="email"
-              type="email"
-              required
-              onChange= {this.handleChange} />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input
-              name="password"
-              type="password"
-              required
-              onChange= {this.handleChange} />
-          </label>
-          <input type="submit" value="Submit"></input>
-        </form>
-        <p></p>
-        <button onClick={this.backButtonHandler}>Back</button>
-        
+        <div className={classes.wrapper}>
+          <h1>Login</h1>
+          <form onSubmit={this.submitHandler}>
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+                onChange= {this.handleChange}
+                className={classes.inputText} />
+            <br />
+              <input
+                name="password"
+                type="password"
+                placeholder="password"
+                required
+                onChange= {this.handleChange}
+                className={classes.inputText} /><p></p>
+            <input type="submit" value="Login" className={classes.inputBtn}></input>
+          </form>
+        </div>
+
         {this.props.error ?
           <p>{this.props.error}</p> : null}
       </Aux>

@@ -1,6 +1,8 @@
 .main {
   font-size: 18px;
-  margin-top: 45px;
+  margin-top: 40px;
+  margin-left: -8px;
+  margin-right: -8px;
 }
 
 @media only screen and (min-width: 600px) {

@@ -4,12 +4,13 @@ import classes from './Profile.module.css';
 import Header from './Header/Header';
 import Posts from '../Posts/Posts';
 import { connect } from 'react-redux';
+import Home from '../Home/Home';
 
 class Profile extends Component {
   render() {
     let loginMessage = null;
     if (!this.props.token) {
-      loginMessage = (<a href="/login">Login</a>)
+      loginMessage = (<Home />)
     }
     return (
       <Aux>

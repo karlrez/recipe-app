@@ -1,0 +1,16 @@
+.loginMessageDiv {
+    background-color: yellow;
+    height: 500%;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40%;
+}
+
+.childDiv {
+    padding-top: 15px;
+}
+
+.lockIcon {
+    height: 128px;
+    padding-top: 64px;
+}
