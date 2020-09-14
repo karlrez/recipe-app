@@ -10,7 +10,7 @@ class CreateUser extends Component {
   state = {
     email: null,
     username: null,
-    fullName: null,
+    full_name: null,
     title: null,
     password: null,
     password2: null,
@@ -45,7 +45,7 @@ class CreateUser extends Component {
     let form_data = new FormData();
     form_data.append('email', this.state.email);
     form_data.append('username', this.state.username);
-    form_data.append('fullName', this.state.fullName);
+    form_data.append('full_name', this.state.full_name);
     form_data.append('title', this.state.title);
     form_data.append('password', this.state.password);
     form_data.append('bio', this.state.bio);
@@ -93,7 +93,7 @@ class CreateUser extends Component {
             <label>Full Name
                 <input
                 className={classes.formInput}
-                name="fullName"
+                name="full_name"
                 onChange= {this.handleChange} />
             </label><p></p>
             <label>Title

@@ -20,6 +20,7 @@ class SideDrawer extends Component {
         attachedClasses = [classes.SideDrawer, classes.Open];
     }
 
+    let editLink;
     let loginLink;
     if (this.props.isAuthenticated) {
       loginLink = (
@@ -29,7 +30,15 @@ class SideDrawer extends Component {
           <img src={Logout} alt="Logout Icon" />
             Logout
         </NavLink>
-      )
+      );
+      editLink = (
+        <NavLink 
+            to="/modify-user"
+            exact="modify-user">
+            <img src={Edit} alt="Edit Icon" />
+            Edit Profile
+          </NavLink>
+      );
     } else {
       loginLink = (
         <NavLink 
@@ -38,6 +47,14 @@ class SideDrawer extends Component {
           <img src={Login} alt="Login Icon" />
             Login
         </NavLink>
+      );
+      editLink = (
+        <NavLink 
+            to="/create-user"
+            exact="/create-user">
+            <img src={Edit} alt="Edit Icon" />
+            Create Profile
+          </NavLink>
       )
     }
     
@@ -50,12 +67,7 @@ class SideDrawer extends Component {
             RecipeGram
           </div>
         <div className={classes.OptionsList}>
-          <NavLink 
-            to="#"
-            exact="#">
-            <img src={Edit} alt="Edit Icon" />
-            Edit Profile
-          </NavLink>
+          { editLink}
           { loginLink }
         </div>
         </div>

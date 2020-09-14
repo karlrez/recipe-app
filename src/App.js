@@ -4,6 +4,7 @@ import Layout from './UI/Layout/Layout';
 import Login from './Components/Login/Login';
 import Logout from './Components/Logout/Logout';
 import CreateUser from './Components/CreateUser/CreateUser';
+import ModifyUser from './Components/ModifyUser/ModifyUser';
 
 function App() {
   let routes = (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/login" exact component={Login} />
       <Route path="/logout" exact component={Logout} />
       <Route path="/create-user" exact component={CreateUser} />
+      <Route path="/modify-user" exact component={ModifyUser} />
       <Route path="/" exact component={Layout} />
       <Redirect to="/" />
     </Switch>

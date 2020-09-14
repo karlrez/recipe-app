@@ -37,3 +37,7 @@ export {
     createRecipe,
     addAnotherRecipe,
 } from './createRecipe';
+
+export {
+    modifyUser,
+} from './modifyUser';
