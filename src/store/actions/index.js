@@ -32,3 +32,8 @@ export {
 export {
     createUser,
 } from './createUser';
+
+export {
+    createRecipe,
+    addAnotherRecipe,
+} from './createRecipe';

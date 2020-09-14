@@ -3,7 +3,7 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
-    token: null,//"9f813fd095d89be1fc50d9d45977933e59dbd31b",
+    token: null,//"ef9b660fad52e74dc7d1041e4bfe644953c41b3f",
     error: null,
     loading: false,
     authRedirectPath: '/'

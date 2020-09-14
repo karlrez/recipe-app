@@ -2,18 +2,20 @@ import axios from '../../axios';
 import * as actionTypes from './actionTypes';
 
 
-export const createUser = (url, data) => {
+export const createUser = (data) => {
     return dispatch => {
         dispatch(createUserStart());
-        console.log(url);
-        axios.post(url, data)
+        const url = 'user/create/';
+        const header = {
+            headers: {
+                'content-type': 'multipart/form-data' }
+        }
+        axios.post(url, data, header)
             .then(response => {
                 console.log("createUser: \n" + JSON.stringify(response.data));
                 dispatch(createUserSuccess(response.data));
             })
             .catch(err => {
-                //console.log(err.response); //more detailed error info
-                //console.log(err.response.request.responseText);
                 console.log(err.response);
                 dispatch(createUserFail(err.response.responseText));
             });

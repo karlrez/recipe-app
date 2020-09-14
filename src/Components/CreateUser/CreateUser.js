@@ -15,7 +15,6 @@ class CreateUser extends Component {
     password: null,
     password2: null,
     bio: null,
-    profilePic: null,
     error: false,
   }
 
@@ -33,13 +32,25 @@ class CreateUser extends Component {
 
   handleImageChange = (e) => {
     this.setState({
-      image: e.target.files[0]
+      profile_pic: e.target.files[0]
     })
   };
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.createUser('user/create/', this.state);
+    if (this.state.password !== this.state.password2) {
+      return;
+    }
+
+    let form_data = new FormData();
+    form_data.append('email', this.state.email);
+    form_data.append('username', this.state.username);
+    form_data.append('fullName', this.state.fullName);
+    form_data.append('title', this.state.title);
+    form_data.append('password', this.state.password);
+    form_data.append('bio', this.state.bio);
+    form_data.append('profile_pic', this.state.profile_pic);
+    this.props.createUser(form_data);
   }
 
 
@@ -117,7 +128,7 @@ class CreateUser extends Component {
             <label>Profile Pic
                 <input
                 className={classes.formInput}
-                name="profilePic"
+                name="profile_pic"
                 type="file"
                 accept="image/png, image/jpeg"
                 onChange= {this.handleImageChange} />
@@ -142,8 +153,8 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-        createUser: (url, data) => dispatch(actions.createUser(url, data)),
+        createUser: (data) => dispatch(actions.createUser(data)),
     };
   };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);

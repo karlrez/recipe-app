@@ -16,8 +16,8 @@ import popularRecipeReducer from './store/reducers/popularRecipes';
 import searchRecipeReducer from './store/reducers/searchRecipes';
 import searchUsersReducer from './store/reducers/searchUsers';
 import createUserReducer from './store/reducers/createUser';
+import createRecipeReducer from './store/reducers/createRecipe';
 import thunk from 'redux-thunk';
-import { createUser } from './store/actions';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   searchRecipes: searchRecipeReducer,
   searchUsers: searchUsersReducer,
   createUser: createUserReducer,
+  createRecipe: createRecipeReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

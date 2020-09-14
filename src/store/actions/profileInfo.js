@@ -32,6 +32,7 @@ export const profileInfoStart = () => {
 export const profileInfoSuccess = (data) => {
     return {
         type: actionTypes.PROFILE_INFO_SUCCESS,
+        id: data.id,
         username: data.username,
         full_name: data.full_name,
         title: data.title,

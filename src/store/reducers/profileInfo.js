@@ -3,6 +3,7 @@ import { updateObject } from '../utility';
 
 
 const initialState = {
+    id: null,
     username: null,
     full_name: null,
     title: null,
@@ -22,6 +23,7 @@ const profileInfoStart = ( state, action ) => {
 
 const profileInfoSuccess = (state, action) => {
     return updateObject( state, {
+        id: action.id,
         username: action.username,
         full_name: action.full_name,
         title: action.title,
