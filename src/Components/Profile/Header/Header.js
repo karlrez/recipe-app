@@ -2,38 +2,54 @@ import React, { Component } from 'react';
 import Aux from '../../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
 import classes from './Header.module.css';
-import * as actions from '../../../store/actions/index';
+import axios from '../../../axios';
 
 class Header extends Component {
-  state = {
 
+  // FIGURE OUT WAY TO SHOW FOLLOWED
+  followHandleClick = (event) => {
+    const header = {
+      headers: {
+          Authorization: 'Token ' + this.props.token }
   }
-
-  componentDidMount() {
-    if (this.props.token !== null && this.props.loaded === false) {
-      this.props.getProfileInfo(this.props.token);
-    }
+  console.log(this.props.token);
+  const url = 'user/' + event.target.value + '/follow';
+    axios.get(url, header)
+            .then(response => {
+                console.log(response.data.follow);
+            })
+            .catch(err => {
+                console.log(err.response);
+            });
   }
 
   render() {
     let info = null;
-    if (this.props.username) {
+    if (this.props.profileInfo) {
        info = (
        <div className={classes.Header}>
-         <img src={this.props.profile_pic} className={classes.ProfilePic}/>
-         <p className={classes.FullName}>{this.props.full_name}</p>
-         <p className={classes.Username}>@{this.props.username}</p>
+         <img src={this.props.profileInfo.profile_pic} className={classes.ProfilePic} alt="profile-pic"/>
+         <p className={classes.FullName}>{this.props.profileInfo.full_name}</p>
+         <p className={classes.Username}>@{this.props.profileInfo.username}</p>
          <table className={classes.Table}>
-           <tr>
-             <td className={classes.TableTop}>{this.props.followers}</td>
-             <td className={classes.TableBottom}>{this.props.following}</td>
-           </tr>
-           <tr>
-             <td>Followers</td>
-             <td>Following</td>
-           </tr>
+           <tbody>
+              <tr>
+                <td className={classes.TableTop}>{this.props.profileInfo.followers}</td>
+                <td className={classes.TableBottom}>{this.props.profileInfo.following}</td>
+              </tr>
+              <tr>
+                <td>Followers</td>
+                <td>Following</td>
+              </tr>
+            </tbody>
          </table>
-         <button className={classes.FollowButton}>Follow</button>
+         <button 
+          className={classes.FollowButton}
+          onClick={this.followHandleClick}
+          value={this.props.profileInfo.username}>Follow</button>
+         <div>
+           {this.props.profileInfo.bio}
+         </div>
        </div>)
     }
 
@@ -47,24 +63,13 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-      token: state.auth.token,
-      username: state.profileInfo.username,
-      full_name: state.profileInfo.full_name,
-      title: state.profileInfo.title,
-      bio: state.profileInfo.bio,
-      followers: state.profileInfo.followers,
-      following: state.profileInfo.following,
-      date_joined: state.profileInfo.date_joined,
-      profile_pic: state.profileInfo.profile_pic,
-      error: state.profileInfo.error,
-      loading: state.profileInfo.error,
-      loaded: state.profileInfo.loaded,
+     token: state.auth.token,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-      getProfileInfo: (token) => dispatch(actions.profileInfo(token, '/manage/profile/'))
+      
   };
 };
 

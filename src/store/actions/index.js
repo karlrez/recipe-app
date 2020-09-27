@@ -41,3 +41,11 @@ export {
 export {
     modifyUser,
 } from './modifyUser';
+
+export {
+    otherProfileInfo,
+} from './otherProfileInfo';
+
+export {
+    otherProfileRecipes,
+} from './otherProfileRecipes';

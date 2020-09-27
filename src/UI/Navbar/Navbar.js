@@ -7,6 +7,7 @@ import Profile from '../../assets/icons/profile.png';
 import Search from '../../assets/icons/search.png';
 import Trophy from '../../assets/icons/trophy.png';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import * as actionTypes from '../../store/actions/actionTypes';
 
 class Navbar extends Component {
@@ -19,41 +20,45 @@ class Navbar extends Component {
     return (
       <Aux>
         <div className={classes.navbar}>
-          <a
-            href="#"
+          <NavLink
+            to="/"
             className={this.props.sp === 1 ? classes.active : null}
             onClick={this.props.selectHomePage}>
             <img src={Home} alt="Home Icon" />
             <span className={classes.icontext}>Home</span>
-          </a>
-          <a
-            href="#"
+          </NavLink>
+
+          <NavLink
+            to="/search"
             className={this.props.sp === 2 ? classes.active : null}
             onClick={this.props.selectSearchPage}>
             <img src={Search} alt="Search Icon" />
             <span className={classes.icontext}>Search</span>
-          </a>
-          <a
-            href="#"
+          </NavLink>
+
+          <NavLink
+            to="/add"
             className={this.props.sp === 3 ? classes.active : null}
             onClick={this.props.selectAddPage}>
             <img src={Add} alt="Add Icon" />
             <span className={classes.icontext}>Add</span>
-          </a>
-          <a
-            href="#"
+          </NavLink>
+
+          <NavLink
+            to="/popular"
             className={this.props.sp === 4 ? classes.active : null}
             onClick={this.props.selectPopularPage}>
             <img src={Trophy} alt="Trophy Icon" />
             <span className={classes.icontext}>Popular</span>
-          </a>
-          <a
-            href="#"
+          </NavLink>
+
+          <NavLink
+            to="/profile"
             className={this.props.sp === 5 ? classes.active : null}
             onClick={this.props.selectProfilePage}>
             <img src={Profile} alt="Profile Icon" />
             <span className={classes.icontext}>Profile</span>
-          </a>
+          </NavLink>
         </div>
       </Aux>
     )

@@ -2,15 +2,14 @@ import axios from '../../axios';
 import * as actionTypes from './actionTypes';
 
 
-export const homeRecipes = (token, url) => {
+export const homeRecipes = (token) => {
     return dispatch => {
         dispatch(homeRecipesStart());
 
         const header = {
             headers: { Authorization: 'Token ' + token }
         }
-        console.log(url + "\n" + token);
-        axios.get(url, header)
+        axios.get('/recipes/feed/', header)
             .then(response => {
                 console.log("homeRecipes: \n" + JSON.stringify(response.data));
                 dispatch(homeRecipesSuccess(response.data));

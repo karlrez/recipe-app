@@ -4,17 +4,33 @@ import Posts from '../Posts/Posts';
 import UserList from '../UserList/UserList';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import { Redirect } from 'react-router-dom';
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class Search extends Component {
   state = {
-    searchInput: null,
     checked: "tag",
     searchInput: null,
     ingredient1: null,
     ingredient2: null,
     ingredient3: null,
     showPosts: true,
+    redirect: null,
   }
+
+  componentDidMount() {
+    this.props.getSearchRecipes('recipes/all-recipes/');
+    
+    if (this.props.sp !== 2) {
+      this.props.selectSearchPage();
+    }
+  }
+
+  usernameHandleClick = (e) => {
+    e.preventDefault();
+    let redirectPath = "/user/" + e.target.value;
+    this.setState({redirect: redirectPath});
+  } 
 
   handleChange = (event) => {
     let formValues = this.state;
@@ -95,6 +111,8 @@ class Search extends Component {
           onChange= {this.handleChange}/>
         );
         break;
+      default:
+        break;
     }
 
     let searchMessage = null;
@@ -108,13 +126,30 @@ class Search extends Component {
       )
     }
 
-    let showPosts = (<Posts />);
+    let showPosts = null;
+    if (this.props.recipesLoading) {
+      showPosts = (<div>Loading...</div>)
+    } else if (this.props.usersLoading) {
+      showPosts = (<div>Loading...</div>)
+    } else {
+      showPosts = (
+        <Posts
+          recipes={this.props.recipes}
+          onClick={(e) => this.usernameHandleClick(e)} />
+      )
+    }
     if (!this.state.showPosts) {
       showPosts = (<UserList />);
     }
 
+    let redirect = null;
+      if (this.state.redirect) {
+          redirect = <Redirect to={this.state.redirect} />
+      }
+
     return (
       <Aux>
+        {redirect}
         {searchInput}
         <form onSubmit={this.submitHandler}>
           <label>Tag
@@ -163,15 +198,21 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-      recipes: state.searchRecipes.recipes,
-      users: state.searchUsers.users,
+    sp: state.navbar.selectedPage,
+    loaded: state.searchRecipes.loaded,
+    recipes: state.searchRecipes.recipes,
+    users: state.searchUsers.users,
+    recipesLoading: state.searchRecipes.loading,
+    usersLoading: state.searchRecipes.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-      recipeQuery: (url) => dispatch(actions.searchRecipes(url)),
-      usersQuery: (url) => dispatch(actions.searchUsers(url)),
+    selectSearchPage: () => dispatch({type: actionTypes.SEARCH_PAGE}),
+    getSearchRecipes: (url) => dispatch(actions.searchRecipes(url)),
+    recipeQuery: (url) => dispatch(actions.searchRecipes(url)),
+    usersQuery: (url) => dispatch(actions.searchUsers(url)),
   };
 };
 

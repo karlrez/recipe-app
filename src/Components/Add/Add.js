@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import * as actionTypes from '../../store/actions/actionTypes';
 import classes from './Add.module.css';
 import axios from '../../axios';
+import { Redirect } from 'react-router-dom';
 
 
 class Add extends Component {
@@ -25,6 +27,9 @@ class Add extends Component {
   }
 
   componentDidMount() {
+    if (this.props.sp !== 3) {
+      this.props.selectAddPage();
+    }
     if (this.props.token !== null && this.props.userInfoLoaded === false) {
       this.props.getProfileInfo(this.props.token);
     }
@@ -33,7 +38,8 @@ class Add extends Component {
   handleImageChange = (e) => {
     console.log(JSON.stringify(this.state));
     this.setState({
-      image: e.target.files[0]
+      image: e.target.files[0],
+      imagePreview: URL.createObjectURL(e.target.files[0])
     })
   };
 
@@ -225,89 +231,101 @@ class Add extends Component {
         )
     }
 
+    let imagePreview = null;
+    if (this.state.imagePreview) {
+      imagePreview = (<img src={this.state.imagePreview} alt="preview" />)
+    }
+
     let form = (
       <form onSubmit={this.submitHandler}>
-      <label><span className={classes.asterisk}>*</span>Recipe Pic
-              <input
-              name="recipePic"
-              type="file"
-              accept="image/png, image/jpeg"
-              required
-              onChange= {this.handleImageChange} />
-        </label><p></p>
-        <label><span className={classes.asterisk}>*</span>Recipe Name
+        {imagePreview}<p></p>
+        <label><span className={classes.asterisk}>*</span>Recipe Pic
                 <input
-                //className={classes.formInput}
-                name="name"
+                name="recipePic"
+                type="file"
+                accept="image/png, image/jpeg"
                 required
-                onChange= {this.handleChange} />
-        </label><p></p>
-        <label>Time (Mins)
-                <input
-                //className={classes.formInput}
-                name="time_minutes"
-                type="number"
-                onChange= {this.handleChange} />
-        </label><p></p>
-        <label>Time (Hours)
-                <input
-                //className={classes.formInput}
-                name="time_hours"
-                type="number"
-                onChange= {this.handleChange} />
-        </label><p></p>
-        <label>Price $
-                <input
-                //className={classes.formInput}
-                name="price"
-                type="number"
-                min="0"
-                step="any"
-                onChange= {this.handleChange} />
-        </label><p></p>
-        <label><span className={classes.asterisk}>*</span>Ingredients
-                <input
-                //className={classes.formInput}
-                name="ingredient"
-                ref="ingred"
-                onChange= {this.ingredientChange}/>
-        </label>
-        <button onClick={this.ingredientAddBtnHandler}>Add</button>
-        <p></p>
-        <ul>
-          {addedIngreds}
-        </ul>
-        <label><span className={classes.asterisk}>*</span>Tags
-                <input
-                //className={classes.formInput}
-                name="tag"
-                ref="tag"
-                onChange= {this.tagChange} />
-        </label>
-        <button onClick={this.tagAddBtnHandler}>Add</button>
-        <p></p>
-        <ul>
-          {addedTags}
-        </ul>
-        <label>Instructions
-                <textarea
-                //className={classes.formInput}
-                name="instructions"
-                rows="5"
-                cols="50"
-                onChange= {this.handleChange} />
-        </label><p></p>
-        <div>
-            <input type="submit" value="Submit"></input>
-        </div>
-        <p>Fields marked with <span className={classes.asterisk}>*</span> are required.</p>
+                onChange= {this.handleImageChange} />
+          </label><p></p>
+          <label><span className={classes.asterisk}>*</span>Recipe Name
+                  <input
+                  //className={classes.formInput}
+                  name="name"
+                  required
+                  onChange= {this.handleChange} />
+          </label><p></p>
+          <label>Time (Mins)
+                  <input
+                  //className={classes.formInput}
+                  name="time_minutes"
+                  type="number"
+                  onChange= {this.handleChange} />
+          </label><p></p>
+          <label>Time (Hours)
+                  <input
+                  //className={classes.formInput}
+                  name="time_hours"
+                  type="number"
+                  onChange= {this.handleChange} />
+          </label><p></p>
+          <label>Price $
+                  <input
+                  //className={classes.formInput}
+                  name="price"
+                  type="number"
+                  min="0"
+                  step="any"
+                  onChange= {this.handleChange} />
+          </label><p></p>
+          <label><span className={classes.asterisk}>*</span>Ingredients
+                  <input
+                  //className={classes.formInput}
+                  name="ingredient"
+                  ref="ingred"
+                  onChange= {this.ingredientChange}/>
+          </label>
+          <button onClick={this.ingredientAddBtnHandler}>Add</button>
+          <p></p>
+          <ul>
+            {addedIngreds}
+          </ul>
+          <label><span className={classes.asterisk}>*</span>Tags
+                  <input
+                  //className={classes.formInput}
+                  name="tag"
+                  ref="tag"
+                  onChange= {this.tagChange} />
+          </label>
+          <button onClick={this.tagAddBtnHandler}>Add</button>
+          <p></p>
+          <ul>
+            {addedTags}
+          </ul>
+          <label>Instructions
+                  <textarea
+                  //className={classes.formInput}
+                  name="instructions"
+                  rows="5"
+                  cols="40"
+                  onChange= {this.handleChange} />
+          </label><p></p>
+          <div>
+              <input type="submit" value="Submit"></input>
+          </div>
+          <p>Fields marked with <span className={classes.asterisk}>*</span> are required.</p>
       </form>
     )
 
+    let redirect = null;
+      if (!this.props.token) {
+          redirect = <Redirect to='/login' />
+      }
+
     return (
       <Aux>
+        {redirect}
         <h2>Add Recipe</h2>
-          {form}
+        <div className={classes.formDiv}>{form}</div>
       </Aux>
     )
   }
@@ -326,6 +344,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    selectAddPage: () => dispatch({type: actionTypes.ADD_PAGE}),
     getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
     createRecipe: (data, token) => dispatch(actions.createRecipe(data, token)),
   };

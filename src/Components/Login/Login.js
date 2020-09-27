@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import * as actions from '../../store/actions/index';
 import classes from './Login.module.css';
+import { NavLink } from 'react-router-dom';
 
 class Login extends Component {
     state = {
@@ -46,7 +47,7 @@ class Login extends Component {
       <Aux>
         {authRedirect}
         <div className={classes.wrapper}>
-          <h1>Login</h1>
+          <h1>RecipeGram</h1>
           <form onSubmit={this.submitHandler}>
               <input
                 name="email"
@@ -64,7 +65,13 @@ class Login extends Component {
                 onChange= {this.handleChange}
                 className={classes.inputText} /><p></p>
             <input type="submit" value="Login" className={classes.inputBtn}></input>
-          </form>
+          </form><p></p>
+          <p>Dont have an account?&nbsp;
+            <NavLink 
+              to="/create-user">
+                Create an account. 
+            </NavLink>
+          </p>
         </div>
 
         {this.props.error ?

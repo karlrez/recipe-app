@@ -26,7 +26,7 @@ class SideDrawer extends Component {
       loginLink = (
         <NavLink 
           to="/logout"
-          exact="/logout">
+          onClick={this.props.closed} >
           <img src={Logout} alt="Logout Icon" />
             Logout
         </NavLink>
@@ -34,7 +34,7 @@ class SideDrawer extends Component {
       editLink = (
         <NavLink 
             to="/modify-user"
-            exact="modify-user">
+            onClick={this.props.closed} >
             <img src={Edit} alt="Edit Icon" />
             Edit Profile
           </NavLink>
@@ -43,7 +43,7 @@ class SideDrawer extends Component {
       loginLink = (
         <NavLink 
           to="/login"
-          exact="/login">
+          onClick={this.props.closed}>
           <img src={Login} alt="Login Icon" />
             Login
         </NavLink>
@@ -51,7 +51,7 @@ class SideDrawer extends Component {
       editLink = (
         <NavLink 
             to="/create-user"
-            exact="/create-user">
+            onClick={this.props.closed} >
             <img src={Edit} alt="Edit Icon" />
             Create Profile
           </NavLink>

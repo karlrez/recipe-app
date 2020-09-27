@@ -7,6 +7,7 @@ import Add from '../../Components/Add/Add';
 import Popular from '../../Components/Popular/Popular';
 import Profile from '../../Components/Profile/Profile';
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import Toolbar from '../Toolbar/Toolbar';
 
@@ -14,6 +15,21 @@ import Toolbar from '../Toolbar/Toolbar';
 class Layout extends Component {
   state = {
       showSideDrawer: false
+  }
+
+  componentDidMount() {
+    if (this.props.token !== null && this.props.profileInfo.loaded === false) {
+      this.props.getProfileInfo(this.props.token);
+    }
+    if (this.props.token !== null && this.props.profileRecipes.loaded === false) {
+      this.props.getProfileRecipes(this.props.token);
+    }
+    if (this.props.token !== null && this.props.homeRecipes.loaded === false) {
+      this.props.getHomeRecipes(this.props.token);
+    }
+    if (this.props.popularRecipes.loaded === false) {
+      this.props.getPopularRecipes();
+    }
   }
 
   sideDrawerClosedHandler = () => {
@@ -30,7 +46,8 @@ class Layout extends Component {
     let component = null;
     switch (this.props.sp) {
       case 1:
-        component = <Home />;
+        component = <Home
+          recipes={this.props.homeRecipes.recipes} />;
         break;
       case 2:
         component = <Search />;
@@ -39,10 +56,13 @@ class Layout extends Component {
         component = <Add />;
         break;
       case 4:
-        component = <Popular />;
+        component = <Popular
+          recipes={this.props.popularRecipes.recipes} />;
         break;
       case 5:
-        component = <Profile />;
+        component = <Profile
+          profileInfo={this.props.profileInfo}
+          recipes={this.props.profileRecipes.recipes} />;
         break;
     }
 
@@ -62,8 +82,23 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
   return {
-    sp: state.navbar.selectedPage
+    sp: state.navbar.selectedPage,
+    token: state.auth.token,
+    profileInfo: state.profileInfo,
+    profileRecipes: state.profileRecipes,
+    homeRecipes: state.homeRecipes,
+    popularRecipes: state.popularRecipes,
+
   };
 };
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+  return {
+      getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
+      getProfileRecipes: (token) => dispatch(actions.profileRecipes(token)),
+      getHomeRecipes: (token) => dispatch(actions.homeRecipes(token)),
+      getPopularRecipes: () => dispatch(actions.popularRecipes()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

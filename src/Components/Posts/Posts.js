@@ -4,64 +4,52 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Like from '../../assets/icons/like.png';
 import classes from './Posts.module.css';
+import axios from '../../axios';
+
 
 class Posts extends Component {
-
+  state = {
+    recipes: null,
+  }
 
   componentDidMount() {
-    if (this.props.token !== null && this.props.profileRecipesLoaded === false) {
-      this.props.getProfileRecipes(this.props.token);
-    }
-    if (this.props.token !== null && this.props.homeRecipesLoaded === false) {
-      this.props.getHomeRecipes(this.props.token);
-    }
-    if (this.props.popularRecipesLoaded === false) {
-      this.props.getPopularRecipes();
-    }
-    if (this.props.searchRecipesLoaded === false) {
-      this.props.getSearchRecipes();
+    if (this.props.recipes) {
+      this.setState({recipes: this.props.recipes});
     }
   }
 
-  render() {
-    let recipes = null;
-    switch (this.props.selectedPage) {
-      case 1: {
-        recipes = this.props.homeRecipes;
-        break;
-      }
-      case 2: {
-        recipes = this.props.searchRecipes;
-        break;
-      }
-      case 3: {
-        break;
-      }
-      case 4: {
-        recipes = this.props.popularRecipes;
-        break;
-      }
-      case 5: {
-        recipes = this.props.profileRecipes;
-        break;
-      }
-      default: {
-        break;
-      }
-    }
+  // FIGURE OUT WAY TO INCREMENT LIKES 
+  likeHandleClick = (event) => {
+    const header = {
+      headers: {
+          Authorization: 'Token ' + this.props.token }
+  }
+    axios.get('recipes/like/' + event.target.value, header)
+            .then(response => {
+                console.log(response.data.like);
+            })
+            .catch(err => {
+                console.log(err.response);
+            });
+  }
 
+  render() {
     let posts = null;
-    if (recipes) {
-      posts = recipes.map(post => (
+    if (this.state.recipes) {
+      posts = this.state.recipes.map(post => (
         <div key={post.id} className={classes.Posts}>
-          <img src={post.image} alt="recipe-image" className={classes.Images}/>
-      <p>{post.name} by {post.user}<button className={classes.LikeButton}><img src={Like} className={classes.LikeIcon}/>{post.likes.length}</button></p>
-      
+          <img src={post.image} alt="recipe" className={classes.Images}/>
+      <p>{post.name} by&nbsp;
+        <button onClick={this.props.onClick} value={post.user} className={classes.UserBtn}>{post.user}</button>
+        <button onClick={this.likeHandleClick} value={post.id} className={classes.LikeButton}>
+            <img src={Like} className={classes.LikeIcon} alt="like button"/>
+              &nbsp;{post.likes.length}
+        </button>
+      </p>
+      <p className={classes.Date}>Posted {post.date.substr(0,10)}</p>
         </div>
     ))
     }
-      
-
     return (
       <Aux>
         {posts}
@@ -72,22 +60,20 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
-      token: state.auth.token,
-      selectedPage: state.navbar.selectedPage,
-      homeRecipes: state.homeRecipes.recipes,
-      searchRecipes: state.searchRecipes.recipes,
-      popularRecipes: state.popularRecipes.recipes,
-      profileRecipes: state.profileRecipes.recipes,
-      homeRecipesLoaded: state.homeRecipes.loaded,
-      profileRecipesLoaded: state.profileRecipes.loaded,
-      popularRecipesLoaded: state.popularRecipes.loaded,
-      searchRecipesLoaded: state.searchRecipes.loaded,
+    token: state.auth.token,
+    selectedPage: state.navbar.selectedPage,
+    homeRecipes: state.homeRecipes.recipes,
+    searchRecipes: state.searchRecipes.recipes,
+    popularRecipes: state.popularRecipes.recipes,
+    otherProfileRecipes: state.otherProfileRecipes.recipes,
+    homeRecipesLoaded: state.homeRecipes.loaded,
+    popularRecipesLoaded: state.popularRecipes.loaded,
+    searchRecipesLoaded: state.searchRecipes.loaded,
   };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getProfileRecipes: (token) => dispatch(actions.profileRecipes(token, '/recipes/my-recipes/')),
         getHomeRecipes: (token) => dispatch(actions.homeRecipes(token, '/recipes/feed/')),
         getPopularRecipes: () => dispatch(actions.popularRecipes('/recipes/popular/')),
         getSearchRecipes: () => dispatch(actions.searchRecipes('/recipes/all-recipes/')),

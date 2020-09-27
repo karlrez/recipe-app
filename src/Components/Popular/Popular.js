@@ -2,19 +2,48 @@ import React, { Component } from 'react';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import * as actionTypes from '../../store/actions/actionTypes';
 import Posts from '../Posts/Posts';
+import { Redirect } from 'react-router-dom';
 
 class Popular extends Component {
-
-  componentDidMount() {
-    //this.props.getRecipeInfo();
+  state = {
+    redirect: null,
   }
 
+  componentDidMount() {
+    this.props.getPopularRecipes();
+    
+    if (this.props.sp !== 4) {
+      this.props.selectPopularPage();
+    }
+  }
+
+  usernameHandleClick = (e) => {
+    e.preventDefault();
+    let redirectPath = "/user/" + e.target.value;
+    this.setState({redirect: redirectPath});
+  } 
+
   render() {
+    let redirect = null;
+      if (this.state.redirect) {
+        redirect = <Redirect to={this.state.redirect} />
+      }
+
+    let posts = null;
+      if (!this.props.recipes) {
+        posts = (<div>Loading...</div>)
+      } else {
+        posts = (
+          <Posts recipes={this.props.recipes}
+          onClick={(e) => this.usernameHandleClick(e)} />
+        )
+      }
     return (
       <Aux>
-      <h2>This is the Popular page</h2>
-      <Posts />
+        {redirect}
+        {posts}
       </Aux>
     )
   }
@@ -22,14 +51,14 @@ class Popular extends Component {
 
 const mapStateToProps = state => {
   return {
-      //recipes: state.recipeInfo.recipes
+      recipes: state.popularRecipes.recipes,
   };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // no token required for this api call
-        //getRecipeInfo: () => dispatch(actions.recipeInfo(null, '/recipes/popular/'))
+      selectPopularPage: () => dispatch({type: actionTypes.POPULAR_PAGE}),
+      getPopularRecipes: () => dispatch(actions.popularRecipes()),
     };
 };
 

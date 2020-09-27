@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+.main {
+    font-size: 18px;
+    margin-top: 40px;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+.routesDiv {
+  margin-bottom: 70px;
+}
+  
+  @media only screen and (min-width: 600px) {
+    .main {
+      margin-left: 156px; /* Same as the width of the sidenav */
+      margin-top: 60px;
+      padding: 0px 16px;
+    }
+  }
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}

@@ -13,8 +13,8 @@ export const auth = (email, password) => {
         axios.post('/user/token/', authData)
             .then(response => {
                 console.log(response);
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-                localStorage.setItem('token', response.data.idToken);
+                const expirationDate = new Date(new Date().getTime() + 3600 * 1000); // should be 1 hour in milliseconds
+                localStorage.setItem('token', response.data.token);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(response.data.token));
                 dispatch(checkAuthTimeout(3600));
@@ -22,7 +22,7 @@ export const auth = (email, password) => {
             .catch(err => {
                 //console.log(err.response); //more detailed error info
                 //console.log(err.response.request.responseText);
-                dispatch(authFail(err.response.request.responseText));
+                dispatch(authFail(err.response));
             });
     };
 };
