@@ -3,7 +3,7 @@
 
 .main {
     font-size: 18px;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-left: -8px;
     margin-right: -8px;
   }
@@ -11,14 +11,23 @@
 .routesDiv {
   margin-bottom: 70px;
 }
+
+input {
+  height: 30px;
+}
   
-  @media only screen and (min-width: 600px) {
-    .main {
-      margin-left: 156px; /* Same as the width of the sidenav */
-      margin-top: 60px;
-      padding: 0px 16px;
-    }
+@media only screen and (min-width: 600px) {
+  .main {
+    margin-left: 156px; /* Same as the width of the sidenav */
+    margin-top: 60px;
+    padding: 0px 16px;
   }
+
+  .wrapper {
+    text-align: center;
+    min-width: 800px;
+  }
+}
 
 h1 {
     font-family: 'Pacifico', cursive;

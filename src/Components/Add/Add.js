@@ -6,6 +6,8 @@ import * as actionTypes from '../../store/actions/actionTypes';
 import classes from './Add.module.css';
 import axios from '../../axios';
 import { Redirect } from 'react-router-dom';
+import AddIcon from '../../assets/icons/add.png';
+import RemoveIcon from '../../assets/icons/remove.png';
 
 
 class Add extends Component {
@@ -219,7 +221,11 @@ class Add extends Component {
     if (this.state.ingredientsList) {
       addedIngreds = 
         this.state.ingredientsList.map((ingred) => 
-          <li>{ingred}<button onClick={this.ingredientRemoveBtnHandler} value={ingred}>Remove</button></li>
+          <li>{ingred}
+            <button onClick={this.ingredientRemoveBtnHandler} value={ingred} className={classes.RemoveBtn}>
+              -
+            </button>
+          </li>
         )
     }
 
@@ -227,92 +233,98 @@ class Add extends Component {
     if (this.state.tagsList) {
       addedTags = 
         this.state.tagsList.map((tag) => 
-          <li>{tag}<button onClick={this.tagRemoveBtnHandler} value={tag}>Remove</button></li>
+          <li>{tag}
+            <button onClick={this.tagRemoveBtnHandler} value={tag} className={classes.RemoveBtn}>
+              -
+            </button>
+          </li>
         )
     }
 
     let imagePreview = null;
     if (this.state.imagePreview) {
-      imagePreview = (<img src={this.state.imagePreview} alt="preview" />)
+      imagePreview = (<img src={this.state.imagePreview} alt="preview" className={classes.ImgPreview} />)
     }
 
     let form = (
       <form onSubmit={this.submitHandler}>
         {imagePreview}<p></p>
-        <label><span className={classes.asterisk}>*</span>Recipe Pic
-                <input
-                name="recipePic"
-                type="file"
-                accept="image/png, image/jpeg"
-                required
-                onChange= {this.handleImageChange} />
-          </label><p></p>
-          <label><span className={classes.asterisk}>*</span>Recipe Name
-                  <input
-                  //className={classes.formInput}
-                  name="name"
-                  required
-                  onChange= {this.handleChange} />
-          </label><p></p>
-          <label>Time (Mins)
-                  <input
-                  //className={classes.formInput}
-                  name="time_minutes"
-                  type="number"
-                  onChange= {this.handleChange} />
-          </label><p></p>
-          <label>Time (Hours)
-                  <input
-                  //className={classes.formInput}
-                  name="time_hours"
-                  type="number"
-                  onChange= {this.handleChange} />
-          </label><p></p>
-          <label>Price $
-                  <input
-                  //className={classes.formInput}
-                  name="price"
-                  type="number"
-                  min="0"
-                  step="any"
-                  onChange= {this.handleChange} />
-          </label><p></p>
-          <label><span className={classes.asterisk}>*</span>Ingredients
-                  <input
-                  //className={classes.formInput}
-                  name="ingredient"
-                  ref="ingred"
-                  onChange= {this.ingredientChange}/>
-          </label>
-          <button onClick={this.ingredientAddBtnHandler}>Add</button>
-          <p></p>
+        <label>Recipe Pic&nbsp;
+            <input
+            name="recipePic"
+            type="file"
+            accept="image/png, image/jpeg"
+            required
+            onChange= {this.handleImageChange}
+            className={classes.FormInput} />
+        </label><p></p>
+            <input
+            //className={classes.formInput}
+            name="name"
+            required
+            placeholder="Recipe Name"
+            onChange= {this.handleChange}
+            className={classes.FormInput} /><p></p>
+            <input
+            //className={classes.formInput}
+            name="time_minutes"
+            type="number"
+            placeholder="Time (Mins)"
+            onChange= {this.handleChange}
+            className={classes.FormInput} /><p></p>
+            <input
+            //className={classes.formInput}
+            name="time_hours"
+            type="number"
+            placeholder="Time (Hours)"
+            onChange= {this.handleChange}
+            className={classes.FormInput} /><p></p>
+            <input
+            //className={classes.formInput}
+            name="price"
+            type="number"
+            min="0"
+            step="any"
+            placeholder="Price $"
+            onChange= {this.handleChange}
+            className={classes.FormInput} /><p></p>
+            <input
+            //className={classes.formInput}
+            name="ingredient"
+            ref="ingred"
+            placeholder="Ingredients"
+            onChange= {this.ingredientChange}
+            className={classes.FormInput} />
+          <button onClick={this.ingredientAddBtnHandler} className={classes.FormBtn}>
+            <img src={AddIcon} alt="add" className={classes.ImgBtn} />
+          </button><p></p>
           <ul>
             {addedIngreds}
           </ul>
-          <label><span className={classes.asterisk}>*</span>Tags
-                  <input
-                  //className={classes.formInput}
-                  name="tag"
-                  ref="tag"
-                  onChange= {this.tagChange} />
-          </label>
-          <button onClick={this.tagAddBtnHandler}>Add</button>
-          <p></p>
+            <input
+            //className={classes.formInput}
+            name="tag"
+            ref="tag"
+            placeholder="Tags"
+            onChange= {this.tagChange}
+            className={classes.FormInput} />
+          <button onClick={this.tagAddBtnHandler} className={classes.FormBtn}>
+            <img src={AddIcon} alt="add" className={classes.ImgBtn} />
+          </button><p></p>
           <ul>
             {addedTags}
           </ul>
-          <label>Instructions
-                  <textarea
-                  //className={classes.formInput}
-                  name="instructions"
-                  rows="5"
-                  cols="40"
-                  onChange= {this.handleChange} />
-          </label><p></p>
+            <textarea
+            //className={classes.formInput}
+            name="instructions"
+            rows="5"
+            cols="40"
+            placeholder="Instructions"
+            onChange= {this.handleChange} />
+          <p></p>
           <div>
               <input type="submit" value="Submit"></input>
           </div>
-          <p>Fields marked with <span className={classes.asterisk}>*</span> are required.</p>
       </form>
     )
 
@@ -324,7 +336,6 @@ class Add extends Component {
     return (
       <Aux>
         {redirect}
-        <h2>Add Recipe</h2>
         <div className={classes.formDiv}>{form}</div>
       </Aux>
     )

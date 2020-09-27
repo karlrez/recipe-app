@@ -27,13 +27,16 @@
 @media only screen and (min-width: 600px) {
   .navbar {
     height: 100%;
-    width: 180px;
+    width: 300px;
+    min-width: 100px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     overflow-x: hidden;
     padding-top: 50px;
+    display: block;
+    table-layout: unset;
   }
 
   .navbar a {
@@ -41,9 +44,9 @@
     text-decoration: none;
     font-size: 25px;
     color: #818181;
-    display: inline-block;
+    display: block;
     border-radius: 60px;
-
+    
   }
 
   .icontext {

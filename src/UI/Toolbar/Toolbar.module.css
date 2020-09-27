@@ -1,5 +1,5 @@
 .toolbar {
-    height: 40px;
+    height: 55px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -19,7 +19,9 @@
 }
 
 .headertext {
-  font-size: 32px;
+  font-size: 28px;
+  font-family: 'Pacifico', cursive;
+  text-decoration: underline;
 }
 
 @media only screen and (min-width: 600px) {

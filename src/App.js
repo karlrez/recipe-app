@@ -56,14 +56,16 @@ class App extends Component {
     );
 
     return (
-      <div className={classes.main}>
-        <Toolbar
-          drawerToggleClicked={this.sideDrawerToggleHandler} />
-        <SideDrawer
-          open={this.state.showSideDrawer}
-          closed={this.sideDrawerClosedHandler} />
-        <Navbar />
-        <div className={classes.routesDiv}>{routes}</div>
+      <div className={classes.wrapper}>
+        <div className={classes.main}>
+          <Toolbar
+            drawerToggleClicked={this.sideDrawerToggleHandler} />
+          <SideDrawer
+            open={this.state.showSideDrawer}
+            closed={this.sideDrawerClosedHandler} />
+          <Navbar />
+          <div className={classes.routesDiv}>{routes}</div>
+        </div>
       </div>
   );
   }

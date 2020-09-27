@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import * as actionTypes from '../../store/actions/actionTypes';
+import classes from './Search.module.css';
 
 class Search extends Component {
   state = {
@@ -71,7 +72,8 @@ class Search extends Component {
           <input
           name="searchInput"
           placeholder={searchPlaceholder}
-          onChange= {this.handleChange}/>
+          onChange= {this.handleChange}
+          className={classes.InputText} />
         );
         break;
       case ("name"):
@@ -80,7 +82,8 @@ class Search extends Component {
           <input
             name="searchInput"
             placeholder={searchPlaceholder}
-            onChange= {this.handleChange}/>
+            onChange= {this.handleChange}
+            className={classes.InputText} />
         )
         break;
       case ("ingredients"):
@@ -90,15 +93,18 @@ class Search extends Component {
             <input
             name="ingredient1"
             placeholder="ingredient1"
-            onChange= {this.handleChange}/><p></p>
+            onChange= {this.handleChange}
+            className={classes.InputText} />
             <input
             name="ingredient2"
             placeholder="ingredient2"
-            onChange= {this.handleChange}/><p></p>
+            onChange= {this.handleChange}
+            className={classes.InputText} />
             <input
             name="ingredient3"
             placeholder="ingredient3"
-            onChange= {this.handleChange}/><p></p>
+            onChange= {this.handleChange}
+            className={classes.InputText} />
           </div>
         );
         break;
@@ -108,7 +114,8 @@ class Search extends Component {
           <input
           name="searchInput"
           placeholder={searchPlaceholder}
-          onChange= {this.handleChange}/>
+          onChange= {this.handleChange}
+          className={classes.InputText} />
         );
         break;
       default:
@@ -150,43 +157,51 @@ class Search extends Component {
     return (
       <Aux>
         {redirect}
-        {searchInput}
-        <form onSubmit={this.submitHandler}>
-          <label>Tag
-            <input
-              type="radio"
-              name="checked"
-              value="tag"
-              checked={this.state.checked === "tag"}
-              onChange= {this.handleChange} />
-          </label>
-          <label>Name
-            <input
-              type="radio"
-              name="checked"
-              value="name"
-              checked={this.state.checked === "name"}
-              onChange= {this.handleChange} />
-          </label>
-          <label>Ingredients
-            <input
-              type="radio"
-              name="checked"
-              value="ingredients"
-              checked={this.state.checked === "ingredients"}
-              onChange= {this.handleChange} />
-          </label>
-          <label>User
-            <input
-              type="radio"
-              name="checked"
-              value="user"
-              checked={this.state.checked === "user"}
-              onChange= {this.handleChange} />
-          </label>
-
-            <input type="submit" value="Search!"></input>
-        </form>
+        
+        <div className={classes.FormDiv}>
+          <form onSubmit={this.submitHandler}>
+            <label>Tag
+              <input
+                type="radio"
+                name="checked"
+                value="tag"
+                checked={this.state.checked === "tag"}
+                onChange= {this.handleChange}
+                className={classes.RadioInput} />
+            </label>
+            <label>Name
+              <input
+                type="radio"
+                name="checked"
+                value="name"
+                checked={this.state.checked === "name"}
+                onChange= {this.handleChange}
+                className={classes.RadioInput} />
+            </label>
+            <label>Ingredients
+              <input
+                type="radio"
+                name="checked"
+                value="ingredients"
+                checked={this.state.checked === "ingredients"}
+                onChange= {this.handleChange}
+                className={classes.RadioInput} />
+            </label>
+            <label>User
+              <input
+                type="radio"
+                name="checked"
+                value="user"
+                checked={this.state.checked === "user"}
+                onChange= {this.handleChange}
+                className={classes.RadioInput} />
+            </label>
+              {searchInput}
+              <input type="submit" value="Search!" className={classes.SubmitBtn}></input>
+          </form>
+          
+        </div>
+        
         
         {searchMessage}
         {showPosts}

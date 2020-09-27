@@ -1,0 +1,18 @@
+.FormDiv {
+    padding-bottom: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.RadioInput {
+    
+}
+
+.InputText {
+    width: 97.5%; 
+}
+
+.SubmitBtn {
+    width: 100%;
+    margin-top: 5px;
+}

@@ -47,7 +47,7 @@ class Login extends Component {
       <Aux>
         {authRedirect}
         <div className={classes.wrapper}>
-          <h1>RecipeGram</h1>
+          <h1 className={classes.title}>RecipeGram</h1>
           <form onSubmit={this.submitHandler}>
               <input
                 name="email"

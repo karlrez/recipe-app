@@ -1,7 +1,47 @@
 .formDiv {
-    width: 90%;
+    width: 95%;
 }
 
 .asterisk {
     color: red;
 }
+
+.FormBtn {
+    background: none;
+    border: none;
+}
+
+.RemoveBtn {
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    background: none;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    border-color: red;
+    color: red;
+}
+
+.ImgBtn {
+    margin-left: 6px;
+    height: 22px;
+}
+
+.FormInput {
+    width: 85%;
+}
+
+.ImgPreview {
+    height: 300px;
+    width: auto;
+    max-width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .formDiv {
+        width: 50%;
+        margin-left: 400px;
+        text-align: left;
+    }
+  }
