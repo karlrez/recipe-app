@@ -6,7 +6,7 @@ export const popularRecipes = () => {
     return dispatch => {
         dispatch(popularRecipesStart());
 
-        axios.get('/recipes/popular/')
+        axios.get('/recipes/popular')
             .then(response => {
                 console.log("popularRecipes: \n" + JSON.stringify(response.data));
                 dispatch(popularRecipesSuccess(response.data));

@@ -74,12 +74,14 @@ const mapStateToProps = state => {
   return {
     sp: state.navbar.selectedPage,
     token: state.auth.token,
+    username: state.profileInfo.username,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     tryAutoSignIn: () => dispatch(actions.authCheckState()),
+    getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
   };
 };
 

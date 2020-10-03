@@ -42,7 +42,7 @@ class Profile extends Component {
     } else {
       posts = (
         <Posts
-          recipes={this.props.recipes}
+          postType="profileRecipes"
           onClick={(e) => this.usernameHandleClick(e)} />
       )
     }

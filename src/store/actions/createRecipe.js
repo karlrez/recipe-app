@@ -5,7 +5,7 @@ import * as actionTypes from './actionTypes';
 export const createRecipe = (data, token) => {
     return dispatch => {
         dispatch(createRecipeStart());
-        const url = 'recipes/create-recipe/'
+        const url = 'recipes/create-recipe'
         const header = {
             headers: {
                 Authorization: 'Token ' + token,

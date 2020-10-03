@@ -20,7 +20,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    this.props.getSearchRecipes('recipes/all-recipes/');
+    this.props.getSearchRecipes('recipes/all-recipes');
     
     if (this.props.sp !== 2) {
       this.props.selectSearchPage();
@@ -44,15 +44,15 @@ class Search extends Component {
   submitHandler = (event) => {
     event.preventDefault();
     if (this.state.checked === "tag") {
-      this.props.recipeQuery('/recipes/tag/' + this.state.searchInput + '/');
+      this.props.recipeQuery('/recipes/tag/' + this.state.searchInput);
       this.setState({showPosts:true});
     } else if (this.state.checked === "name") {
-      this.props.recipeQuery('/recipes/name/' + this.state.searchInput + '/');
+      this.props.recipeQuery('/recipes/name/' + this.state.searchInput);
       this.setState({showPosts:true});
     } else if (this.state.checked === "ingredients") {
       let ingred1 = this.state.ingredient1;
-      let ingred2 = this.state.ingredient2 ? '/' + this.state.ingredient2 + '/' : "";
-      let ingred3 = this.state.ingredient3 ? this.state.ingredient3 + '/' : "";
+      let ingred2 = this.state.ingredient2 ? '/' + this.state.ingredient2 + "/" : "";
+      let ingred3 = this.state.ingredient3 ? this.state.ingredient3 : "";
       this.props.recipeQuery('recipes/ingredients/' + ingred1 + ingred2 + ingred3);
       this.setState({showPosts:true});
     } else if (this.state.checked === "user") {
@@ -141,7 +141,7 @@ class Search extends Component {
     } else {
       showPosts = (
         <Posts
-          recipes={this.props.recipes}
+          postType="searchRecipes"
           onClick={(e) => this.usernameHandleClick(e)} />
       )
     }

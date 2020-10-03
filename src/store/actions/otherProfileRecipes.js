@@ -6,7 +6,7 @@ export const otherProfileRecipes = (username) => {
     return dispatch => {
         dispatch(otherProfileRecipesStart());
 
-        axios.get('recipes/user/' + username)
+        axios.get('recipes/user/' + username + '/')
             .then(response => {
                 console.log("otherProfileRecipes: \n" + JSON.stringify(response.data));
                 dispatch(otherProfileRecipesSuccess(response.data));

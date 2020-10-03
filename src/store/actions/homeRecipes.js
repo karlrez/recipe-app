@@ -9,7 +9,7 @@ export const homeRecipes = (token) => {
         const header = {
             headers: { Authorization: 'Token ' + token }
         }
-        axios.get('/recipes/feed/', header)
+        axios.get('/recipes/feed', header)
             .then(response => {
                 console.log("homeRecipes: \n" + JSON.stringify(response.data));
                 dispatch(homeRecipesSuccess(response.data));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './SideDrawer.module.css';
-import Backdrop from './Backdrop/Backdrop';
+import Backdrop from '../Backdrop/Backdrop';
 import Aux from '../../UI/AuxFolder/Auxiliary';
 import Logo from '../../assets/icons/recipe.png';
 import Edit from '../../assets/icons/edit.png';

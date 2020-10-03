@@ -6,7 +6,7 @@ export const otherProfileInfo = (username) => {
     return dispatch => {
         dispatch(otherProfileInfoStart());
 
-        axios.get('/user/search-user/' + username)
+        axios.get('/user/search-user/' + username + '/')
             .then(response => {
                 dispatch(otherProfileInfoSuccess(response.data));
             })

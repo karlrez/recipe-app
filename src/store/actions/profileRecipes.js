@@ -9,7 +9,7 @@ export const profileRecipes = (token) => {
         const header = {
             headers: { Authorization: 'Token ' + token }
         }
-        axios.get('/recipes/my-recipes/', header)
+        axios.get('/recipes/my-recipes', header)
             .then(response => {
                 console.log("profileRecipes: \n" + JSON.stringify(response.data));
                 dispatch(profileRecipesSuccess(response.data));

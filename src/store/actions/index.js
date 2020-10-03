@@ -49,3 +49,7 @@ export {
 export {
     otherProfileRecipes,
 } from './otherProfileRecipes';
+
+export {
+    getFollowers,
+} from './getFollowers';

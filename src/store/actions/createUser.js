@@ -5,7 +5,7 @@ import * as actionTypes from './actionTypes';
 export const createUser = (data) => {
     return dispatch => {
         dispatch(createUserStart());
-        const url = 'user/create/';
+        const url = 'user/create';
         const header = {
             headers: {
                 'content-type': 'multipart/form-data' }

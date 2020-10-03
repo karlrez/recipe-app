@@ -10,7 +10,7 @@ export const auth = (email, password) => {
             password: password
         };
 
-        axios.post('/user/token/', authData)
+        axios.post('/user/token', authData)
             .then(response => {
                 console.log(response);
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000); // should be 1 hour in milliseconds

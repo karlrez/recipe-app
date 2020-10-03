@@ -18,7 +18,8 @@
 
 .UserBtn {
     background: none;
-    border: none;
+    border-style: solid;
+    border-width: 1px;
     font-size: 18px;
     font-weight: bold;
 }
@@ -28,6 +29,10 @@
     border: none;
     width: 60px;
     font-size: 16px;
+}
+
+.LikeButtonClicked {
+    background-color: #0C6291;
 }
 
 .LikeIcon {

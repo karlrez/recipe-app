@@ -20,6 +20,7 @@ import createRecipeReducer from './store/reducers/createRecipe';
 import modifyUserReducer from './store/reducers/modifyUser';
 import otherProfileInfoReducer from './store/reducers/otherProfileInfo';
 import otherProfileRecipesReducer from './store/reducers/otherProfileRecipes';
+import getFollowersReducer from './store/reducers/getFollowers';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   modifyUser: modifyUserReducer,
   otherProfileInfo: otherProfileInfoReducer,
   otherProfileRecipes: otherProfileRecipesReducer,
+  getFollowers: getFollowersReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

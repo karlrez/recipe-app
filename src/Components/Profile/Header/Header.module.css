@@ -31,6 +31,10 @@
 
 .TableTop {
     font-size: 18px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
 }
 
 .TableBottom {
@@ -38,5 +42,16 @@
 }
 
 .FollowButton {
-    width: 50%;
+    width: 100%;
+    height: 30px;
+}
+
+.BioDiv {
+    margin: 8px;
+}
+
+@media (min-width: 600px) {
+    .Header {
+        width: 30%;
+    }
 }

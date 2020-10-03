@@ -9,6 +9,7 @@ import * as actions from '../../store/actions/index';
 class OtherProfile extends Component {
   componentDidMount() {
     const { username } = this.props.match.params
+    if (username) { this.setState({username: username});}
 
     if (username) {
       this.props.getOtherProfileInfo(username);
@@ -17,10 +18,15 @@ class OtherProfile extends Component {
   }
 
   render() {
+    const { username } = this.props.match.params
+    if (this.props.profileInfo.username && username !== this.props.profileInfo.username) {
+      window.location.reload(false);
+    }
+
     return (
       <Aux>
         <Header profileInfo={this.props.profileInfo}/>
-        <Posts recipes={this.props.recipes}/>
+        <Posts postType="otherProfileRecipes" />
       </Aux>
     )
   }

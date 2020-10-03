@@ -36,13 +36,15 @@ class Popular extends Component {
         posts = (<div>Loading...</div>)
       } else {
         posts = (
-          <Posts recipes={this.props.recipes}
-          onClick={(e) => this.usernameHandleClick(e)} />
+          <Posts 
+            postType="popularRecipes"
+            onClick={(e) => this.usernameHandleClick(e)} />
         )
       }
     return (
       <Aux>
         {redirect}
+        <h2>Our most liked posts!</h2>
         {posts}
       </Aux>
     )

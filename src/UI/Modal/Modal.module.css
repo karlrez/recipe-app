@@ -1,0 +1,45 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    
+    margin-left: auto;
+    margin-right: auto;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    transition: all 0.3s ease-out;
+    text-align: left;
+    overflow: auto;
+}
+
+.RecipeImage {
+    height: 50px;
+    width: auto;
+    max-width: 100%;
+}
+
+.FollowerListItem {
+    width: 100%;
+    list-style-type: none;
+    border-style: solid;
+    border-top-style: none;
+    border-width: 1px;
+    padding: 8px;
+}
+
+.FollowerPic {
+    height: 50px;
+    border-radius: 50%;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

@@ -223,7 +223,7 @@ class Add extends Component {
         this.state.ingredientsList.map((ingred) => 
           <li>{ingred}
             <button onClick={this.ingredientRemoveBtnHandler} value={ingred} className={classes.RemoveBtn}>
-              -
+              x
             </button>
           </li>
         )
@@ -235,7 +235,7 @@ class Add extends Component {
         this.state.tagsList.map((tag) => 
           <li>{tag}
             <button onClick={this.tagRemoveBtnHandler} value={tag} className={classes.RemoveBtn}>
-              -
+              x
             </button>
           </li>
         )

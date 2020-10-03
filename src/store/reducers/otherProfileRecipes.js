@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const otherProfileRecipesStart = ( state, action ) => {
-    return updateObject( state, { error: null, loading: true } );
+    return updateObject( state, { error: null, loading: true, recipes: null } );
 };
 
 const otherProfileRecipesSuccess = (state, action) => {

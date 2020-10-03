@@ -53,9 +53,18 @@ class Home extends Component {
     } else {
       posts = (
         <Posts
-          recipes={this.props.homeRecipes.recipes}
+          postType="homeRecipes"
           onClick={(e) => this.usernameHandleClick(e)} />
       )
+    }
+
+    let emptyFeedMessage;
+    if (this.props.homeRecipes.loaded) {
+      if (this.props.homeRecipes.recipes.length < 1) {
+        posts = (
+        <div className={classes.EmptyFeedMessage}>Follow some users to see their recipes here!</div>
+        );
+      }
     }
 
     return (
