@@ -21,8 +21,7 @@ export const auth = (email, password) => {
             })
             .catch(err => {
                 //console.log(err.response); //more detailed error info
-                //console.log(err.response.request.responseText);
-                dispatch(authFail(err.response));
+                dispatch(authFail(err.response.request.responseText));
             });
     };
 };
