@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 // Imports needed for Redux
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
@@ -49,9 +49,9 @@ const store = createStore(rootReducer, composeEnhancers(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="recipegram">
+      <HashRouter basename='/'>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
