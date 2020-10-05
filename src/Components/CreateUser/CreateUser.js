@@ -32,7 +32,8 @@ class CreateUser extends Component {
 
   handleImageChange = (e) => {
     this.setState({
-      profile_pic: e.target.files[0]
+      profile_pic: e.target.files[0],
+      imagePreview: URL.createObjectURL(e.target.files[0])
     })
   };
 
@@ -70,62 +71,68 @@ class CreateUser extends Component {
             redirect = <Redirect to={this.props.redirect} />
         }
 
+    let imagePreview = null;
+    if (this.state.imagePreview) {
+      imagePreview = (<img src={this.state.imagePreview} alt="preview" className={classes.ImgPreview} />)
+    }
+
     return (
       <Aux>
         {redirect}
         <h1>Sign Up</h1>
-        <form onSubmit={this.submitHandler}>
-            <label>Email
+        <form onSubmit={this.submitHandler} className={classes.CreateUserForm}>
                 <input
                 className={classes.formInput}
                 type="email"
                 name="email"
                 required
+                placeholder="Email"
                 onChange= {this.handleChange} />
-            </label><p></p>
-            <label>Username
+            <p></p>
                 <input
                 className={classes.formInput}
                 name="username"
                 required
+                placeholder="username"
                 onChange= {this.handleChange} />
-            </label><p></p>
-            <label>Full Name
+            <p></p>
                 <input
                 className={classes.formInput}
                 name="full_name"
+                placeholder="Full Name"
                 onChange= {this.handleChange} />
-            </label><p></p>
-            <label>Title
+            <p></p>
                 <input
                 className={classes.formInput}
                 name="title"
-                placeholder="Head Chef, Master Cook, etc"
+                placeholder=" Title: Head Chef, Master Cook, etc"
                 onChange= {this.handleChange} />
-            </label><p></p>
-            <label>Password
+            <p></p>
                 <input
                 className={classes.formInput}
                 type="password"
                 name="password"
                 required
+                placeholder="password"
                 onChange= {this.handleChange} />
-            </label><p></p>
-            <label>Confirm Password
+            <p></p>
                 <input
                 className={classes.formInput}
                 type="password"
                 name="password2"
                 required
+                placeholder="Confirm Password"
                 onChange= {this.handleChange} />
-            </label><p>{errorMessage}</p>
-            <label>Bio
-                <input
+            <p style={{color: "red"}}>{errorMessage}</p>
+                <textarea
                 className={classes.formInput}
+                rows="6"
                 name="bio"
+                placeholder="A short bio"
                 onChange= {this.handleChange} />
-            </label><p></p>
+            <p></p>
             <label>Profile Pic
+                <br/>{imagePreview}<br/>
                 <input
                 className={classes.formInput}
                 name="profile_pic"

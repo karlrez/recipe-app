@@ -337,6 +337,8 @@ class Add extends Component {
       <Aux>
         {redirect}
         <div className={classes.formDiv}>{form}</div>
+        {this.props.error ? null : <p>{this.props.error}</p>}
+        {this.props.showSuccess ? alert("Recipe Added!") : null}
       </Aux>
     )
   }
@@ -348,8 +350,8 @@ const mapStateToProps = state => {
     userInfoLoaded: state.profileInfo.loaded,
     userId: state.profileInfo.id,
     error: state.createRecipe.error,
-    loading: state.createRecipe.loading,
     showSuccess: state.createRecipe.showSuccess,
+    loading: state.createRecipe.loading,
   };
 };
 

@@ -16,73 +16,16 @@ import Search from './Components/Search/Search';
 import Add from './Components/Add/Add';
 import Popular from './Components/Popular/Popular';
 import Profile from './Components/Profile/Profile';
+import Aux from './UI/AuxFolder/Auxiliary';
+import Layout from './UI/Layout/Layout';
+import { NavLink } from 'react-router-dom';
 
 class App extends Component {
-  state = {
-    showSideDrawer: false
-  }
-
-  componentDidMount() {
-    // Collecting login info if available from local storage
-    this.props.tryAutoSignIn();
-  }
-
-  sideDrawerClosedHandler = () => {
-    this.setState( { showSideDrawer: false } );
-  }
-
-  sideDrawerToggleHandler = () => {
-    this.setState( ( prevState ) => {
-        return { showSideDrawer: !prevState.showSideDrawer };
-    } );
-  }
-  
   render() {
-    let routes = (
-      <Switch>
-        <Route path="/login" exact component={Login} />
-        <Route path="/logout" exact component={Logout} />
-        <Route path="/create-user" exact component={CreateUser} />
-        <Route path="/modify-user" exact component={ModifyUser} />
-        <Route path="/user/:username" component= {OtherProfile} />
-        <Route path="/search" exact component= {Search} />
-        <Route path="/add" exact component= {Add} />
-        <Route path="/popular" exact component= {Popular} />
-        <Route path="/profile" exact component= {Profile} />
-        <Route path="/" exact component={Home} />
-        
-        <Redirect to="/" />
-      </Switch>
-    );
-
     return (
-      <div className={classes.wrapper}>
-        <div className={classes.main}>
-          <Toolbar
-            drawerToggleClicked={this.sideDrawerToggleHandler} />
-          <SideDrawer
-            open={this.state.showSideDrawer}
-            closed={this.sideDrawerClosedHandler} />
-          <Navbar />
-          <div className={classes.routesDiv}>{routes}</div>
-        </div>
-      </div>
+      <Layout />
   );
   }
 }
-const mapStateToProps = state => {
-  return {
-    sp: state.navbar.selectedPage,
-    token: state.auth.token,
-    username: state.profileInfo.username,
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    tryAutoSignIn: () => dispatch(actions.authCheckState()),
-    getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

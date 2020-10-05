@@ -49,7 +49,7 @@ const store = createStore(rootReducer, composeEnhancers(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="recipegram">
         <App />
       </BrowserRouter>
     </Provider>

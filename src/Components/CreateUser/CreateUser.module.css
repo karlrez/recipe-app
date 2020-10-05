@@ -1,5 +1,16 @@
+.CreateUserForm {
+    text-align: center;
+}
+
 .formInput {
-    margin-left: 13px;
+    width: 85%;
+}
+
+.ImgPreview {
+    border-radius: 50%;
+    height: 200px;
+    width: auto;
+    max-width: 100%;
 }
 
 .submitDiv {
@@ -9,4 +20,5 @@
 .submitBtn {
     height: 30px;
     width: 85%;
+    margin-bottom: 18px;
 }
