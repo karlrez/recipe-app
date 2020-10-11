@@ -138,13 +138,14 @@ class Search extends Component {
       showPosts = (<div>Loading...</div>)
     } else if (this.props.usersLoading) {
       showPosts = (<div>Loading...</div>)
-    } else {
+    } else if (this.props.loaded) {
       showPosts = (
         <Posts
           postType="searchRecipes"
           onClick={(e) => this.usernameHandleClick(e)} />
       )
     }
+
     if (!this.state.showPosts) {
       showPosts = (<UserList />);
     }

@@ -213,6 +213,27 @@ class Add extends Component {
     form_data.append('instructions',this.state.instructions);
     form_data.append('image',this.state.image);
     this.props.createRecipe(form_data, this.props.token);
+
+    this.resetState();
+  }
+
+  resetState = () => {
+    this.setState({
+      id: null,
+      name: "",
+      time_minutes: 0,
+      time_hours: 0,
+      price: 0,
+      link: "",
+      instructions: "",
+      ingredient: "",
+      ingredientsList: [],
+      ingredients: [],
+      tag: "",
+      tagsList: [],
+      tags: [],
+      image: null,
+    })
   }
 
 
@@ -323,7 +344,8 @@ class Add extends Component {
             onChange= {this.handleChange} />
           <p></p>
           <div>
-              <input type="submit" value="Submit"></input>
+              {this.props.showSuccess ? <p>Recipe Added!</p> : null}
+              {!this.props.showSuccess ? <input type="submit" value="Submit"></input> : null}
           </div>
       </form>
     )
@@ -338,7 +360,6 @@ class Add extends Component {
         {redirect}
         <div className={classes.formDiv}>{form}</div>
         {this.props.error ? null : <p>{this.props.error}</p>}
-        {this.props.showSuccess ? alert("Recipe Added!") : null}
       </Aux>
     )
   }

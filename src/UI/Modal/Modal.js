@@ -50,18 +50,20 @@ class Modal extends Component {
             )
         }
         
-        if (this.props.followers) {
-            output = (
-                this.props.followers.map(follower => (
-                    <li className={classes.FollowerListItem}>
-                        <NavLink 
-                            to={"/user/" + follower.username}
-                            onClick={this.props.closed}>
-                            <img src={follower.profile_pic} alt="profile-pic" className={classes.FollowerPic} /> &nbsp;{follower.username}<br />
-                        </NavLink>
-                    </li>
-                    ))
-            );
+        if (this.props.showFollowers) {
+            if (this.props.followers) {
+                output = (
+                    this.props.followers.results.map(follower => (
+                        <li className={classes.FollowerListItem}>
+                            <NavLink 
+                                to={"/user/" + follower.username}
+                                onClick={this.props.closed}>
+                                <img src={follower.profile_pic} alt="profile-pic" className={classes.FollowerPic} /> &nbsp;{follower.username}<br />
+                            </NavLink>
+                        </li>
+                        ))
+                );
+            }
         }
         
 

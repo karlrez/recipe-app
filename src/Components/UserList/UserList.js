@@ -30,7 +30,7 @@ class UserList extends Component {
 
 const mapStateToProps = state => {
   return {
-      users: state.searchUsers.users,
+      users: state.searchUsers.users.results,
   };
 };
 

@@ -82,7 +82,7 @@ class Posts extends Component {
 
     let posts;
     if (recipes) {
-      posts = recipes.map(post => (
+      posts = recipes.results.map(post => (
         <div key={post.id} className={classes.Posts}>
           <NavLink 
             to="#"
@@ -107,7 +107,8 @@ class Posts extends Component {
         <Modal
           show="true"
           closed={this.hideModalHandler}
-          recipe={this.state.modalRecipe} />);
+          recipe={this.state.modalRecipe}
+          showFollowers = "" />);
     }
     return (
       <Aux>

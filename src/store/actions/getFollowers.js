@@ -20,7 +20,7 @@ export const getFollowers = (user, getFollowers) => {
             })
             .catch(err => {
                 //console.log(err.response); //more detailed error info
-                console.log(err.response.request.responseText);
+                console.log(err.response);
                 dispatch(getFollowersFail(err));
             });
     };

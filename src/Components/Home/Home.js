@@ -20,8 +20,10 @@ class Home extends Component {
     if (!this.props.token) {
       this.setState({redirect: '/login'});
     }
+
     if (this.props.token) {
       this.props.getHomeRecipes(this.props.token);
+      this.props.getProfileInfo(this.props.token);
     }
   }
 
@@ -64,12 +66,13 @@ class Home extends Component {
         posts = (
         <div className={classes.EmptyFeedMessage}>Follow some users to see their recipes here!</div>
         );
-      }
+      } 
     }
 
     return (
       <Aux className={classes.wrapper}>
         {redirect}
+        {this.props.username ? <h3>Hello {this.props.username}!<br /><br /> Heres what your friends have been cooking...</h3> : null}
         {posts}
       </Aux>
     )
@@ -81,6 +84,7 @@ const mapStateToProps = state => {
     sp: state.navbar.selectedPage,
     token: state.auth.token,
     homeRecipes: state.homeRecipes,
+    username: state.profileInfo.username,
   };
 };
 
@@ -88,6 +92,7 @@ const mapDispatchToProps = dispatch => {
   return {
     selectHomePage: () => dispatch({type: actionTypes.HOME_PAGE}),
     getHomeRecipes: (token) => dispatch(actions.homeRecipes(token)),
+    getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
   };
 };
 
