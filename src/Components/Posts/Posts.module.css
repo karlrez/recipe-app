@@ -59,14 +59,16 @@
 .LikeButton {
   background: none;
   border: none;
+  outline: none;
   width: 60px;
   font-size: 16px;
   
 }
 
 .LikeIcon {
-  width: 20px;
+  width: 30px;
   cursor: pointer;
+  padding: 4px;
 }
 
 .Date {
