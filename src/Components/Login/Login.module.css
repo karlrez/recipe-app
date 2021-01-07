@@ -1,14 +1,19 @@
+.main {
+    
+}
+
 .wrapper {
-    width: 90%;
-    margin-top: 100px;
     text-align: center;
-    padding: 10px;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    margin-top: 100px;
     /* for fade in*/
     opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: 1.5s;
+	animation-duration: 2.5s;
 }
 
 @keyframes fadeInOpacity {
@@ -26,7 +31,6 @@
 
 .inputText {
     width: 85%;
-    height: 30px;
 }
 
 .inputBtn {
@@ -35,6 +39,12 @@
 }
 
 @media only screen and (min-width: 600px) {
+    .main {
+    height: 100%;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    }
+
     .wrapper {
         width: 30%;
         min-width: 200px;
@@ -48,7 +58,7 @@
         animation-name: fadeInOpacity;
         animation-iteration-count: 1;
         animation-timing-function: ease-in;
-        animation-duration: 1.5s;
+        animation-duration: 2.5s;
     }
 
   }

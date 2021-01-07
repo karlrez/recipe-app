@@ -1,67 +1,61 @@
-import React, { Component } from 'react';
-import Aux from '../../UI/AuxFolder/Auxiliary';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import * as actionTypes from '../../store/actions/actionTypes';
-import Posts from '../Posts/Posts';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import Aux from "../../UI/AuxFolder/Auxiliary";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+import * as actionTypes from "../../store/actions/actionTypes";
+import Posts from "../Posts/Posts";
+import Spinner from "../../UI/Spinner/Spinner";
 
 class Popular extends Component {
-  state = {
-    redirect: null,
-  }
-
   componentDidMount() {
     this.props.getPopularRecipes();
-    
+
     if (this.props.sp !== 4) {
       this.props.selectPopularPage();
     }
   }
 
-  usernameHandleClick = (e) => {
-    e.preventDefault();
-    let redirectPath = "/user/" + e.target.value;
-    this.setState({redirect: redirectPath});
-  } 
+  // Reloading recipes when like button is clicked to show like is incremented
+  likeHandleClick = () => {
+    const getRecipies = () => this.props.getPopularRecipes();
+    setTimeout(function () {
+      getRecipies();
+    }, 300);
+  };
 
   render() {
-    let redirect = null;
-      if (this.state.redirect) {
-        redirect = <Redirect to={this.state.redirect} />
-      }
-
     let posts = null;
-      if (!this.props.recipes) {
-        posts = (<div>Loading...</div>)
-      } else {
-        posts = (
-          <Posts 
-            postType="popularRecipes"
-            onClick={(e) => this.usernameHandleClick(e)} />
-        )
-      }
+    if (!this.props.recipes) {
+      posts = <Spinner />;
+    } else {
+      posts = (
+        <Posts
+          postType="popularRecipes"
+          onClick={(e) => this.usernameHandleClick(e)}
+          onLikeBtnClick={(e) => this.likeHandleClick(e)}
+        />
+      );
+    }
     return (
       <Aux>
-        {redirect}
         <h2>Our most liked posts!</h2>
         {posts}
       </Aux>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      recipes: state.popularRecipes.recipes,
+    recipes: state.popularRecipes.recipes,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-      selectPopularPage: () => dispatch({type: actionTypes.POPULAR_PAGE}),
-      getPopularRecipes: () => dispatch(actions.popularRecipes()),
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectPopularPage: () => dispatch({ type: actionTypes.POPULAR_PAGE }),
+    getPopularRecipes: () => dispatch(actions.popularRecipes()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Popular);

@@ -20,8 +20,7 @@ export const auth = (email, password) => {
                 dispatch(checkAuthTimeout(3600));
             })
             .catch(err => {
-                //console.log(err.response); //more detailed error info
-                dispatch(authFail(err.response.request.responseText));
+                dispatch(authFail(err.response.responseText));
             });
     };
 };

@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">');
 
+h1 {
+  font-family: 'Pacifico', cursive;
+  text-decoration: underline;
+}
 
 .main {
-  font-family: 'Raleway', sans-serif;
   font-size: 18px;
   margin-top: 60px;
-  margin-left: -8px;
-  margin-right: -8px;
   }
 
 .routesDiv {
-  margin-bottom: 70px;
+  padding-bottom: 90px;
+  border-style: solid black;
+  max-width: 100%;
 }
 
 input {
@@ -26,11 +29,17 @@ input {
   }
 
   .wrapper {
-    text-align: center;
-    min-width: 800px;
+    min-width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    margin-left: 6vw;
   }
-}
 
-h1 {
-    font-family: 'Pacifico', cursive;
+  .routesDiv {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 20vw;
+    max-width: 30vw;
+  }
+
 }

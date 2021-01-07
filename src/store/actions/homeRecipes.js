@@ -1,45 +1,46 @@
-import axios from '../../axios';
-import * as actionTypes from './actionTypes';
-
+import axios from "../../axios";
+import * as actionTypes from "./actionTypes";
 
 export const homeRecipes = (token) => {
-    return dispatch => {
-        dispatch(homeRecipesStart());
+  return (dispatch) => {
+    dispatch(homeRecipesStart());
 
-        const header = {
-            headers: { Authorization: 'Token ' + token }
-        }
-        axios.get('/recipes/feed', header)
-            .then(response => {
-                console.log("homeRecipes: \n" + JSON.stringify(response.data));
-                dispatch(homeRecipesSuccess(response.data));
-            })
-            .catch(err => {
-                //console.log(err.response); //more detailed error info
-                //console.log(err.response.request.responseText);
-                console.log(err.response);
-                dispatch(homeRecipesFail(err.response));
-            });
+    const header = {
+      headers: { Authorization: "Token " + token },
     };
+
+    axios
+      .get("/recipes/feed", header)
+      .then((response) => {
+        console.log("homeRecipes: \n" + JSON.stringify(response.data));
+        dispatch(homeRecipesSuccess(response.data));
+      })
+      .catch((err) => {
+        //console.log(err.response); //more detailed error info
+        //console.log(err.response.request.responseText);
+        console.log(err.response);
+        dispatch(homeRecipesFail(err.response));
+      });
+  };
 };
 
 export const homeRecipesStart = () => {
-    return {
-        type: actionTypes.HOME_RECIPES_START
-    };
+  return {
+    type: actionTypes.HOME_RECIPES_START,
+  };
 };
 
 export const homeRecipesSuccess = (data) => {
-    return {
-        type: actionTypes.HOME_RECIPES_SUCCESS,
-        recipes: data
-    };
+  return {
+    type: actionTypes.HOME_RECIPES_SUCCESS,
+    recipes: data,
+  };
 };
 
 export const homeRecipesFail = (error) => {
-    return {
-        type: actionTypes.HOME_RECIPES_FAIL,
-        loading: false,
-        error: error
-    };
+  return {
+    type: actionTypes.HOME_RECIPES_FAIL,
+    loading: false,
+    error: error,
+  };
 };

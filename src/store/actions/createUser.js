@@ -17,7 +17,7 @@ export const createUser = (data) => {
             })
             .catch(err => {
                 console.log(err.response);
-                dispatch(createUserFail(err.response.responseText));
+                dispatch(createUserFail(JSON.stringify(err.response.data)));
             });
     };
 };

@@ -1,62 +1,76 @@
-import React, { Component } from 'react';
-import Aux from '../../UI/AuxFolder/Auxiliary';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import Like from '../../assets/icons/like.png';
-import classes from './Posts.module.css';
-import axios from '../../axios';
-import Modal from '../../UI/Modal/Modal';
-import { NavLink } from 'react-router-dom';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
+import LikeIcon from "../../assets/icons/like.png";
+import LikeBlueIcon from "../../assets/icons/likeBlue.png";
+import CommentIcon from "../../assets/icons/comment.png";
+import classes from "./Posts.module.css";
+import { NavLink } from "react-router-dom";
 
 class Posts extends Component {
-  state = {
-    showModal: false,
-    modalRecipe: null,
-  }
 
   componentDidMount() {
-
+    if (this.props.token && !this.props.username) {
+      this.props.getProfileInfo(this.props.token);
+    }
   }
 
-  // FIGURE OUT WAY TO INCREMENT LIKES 
-  likeHandleClick = (event) => {
+  likeHandleClick = (event, recipeId) => {
     event.preventDefault();
-    if (!this.props.token) {
-      alert('Sign in to like recipes!');
+
+    // Sometimes recipeId is undefined
+    if (!recipeId) {
       return;
     }
+    console.log(`recipe id: ${recipeId}`);
 
-    const header = {
-      headers: {
-          Authorization: 'Token ' + this.props.token }
-  }
-    axios.get('recipes/like/' + event.target.value, header)
-            .then(response => {
-                console.log(response.data.like);
-            })
-            .catch(err => {
-                console.log(err.response);
-            });
-    
-    // Changing style of button after click
-    if (event.target.classList.contains(classes.LikeButtonClicked)) {
-      event.target.classList.remove(classes.LikeButtonClicked);
+    this.props.likeRecipe(this.props.token, recipeId);
+    // outer component will make api call to get updated recipes
+    this.props.onLikeBtnClick();
+  };
+
+  commentHandleClick = (event, recipeId) => {
+    event.preventDefault();
+    alert("Comment feature coming soon!");
+  };
+
+  // Iterates thru likes array in recipe to see if post was already liked by user
+  checkLikedPost = (post) => {
+    for (let i = 0; i < post.likes.length; i++) {
+      if (this.props.username === post.likes[i]) {
+        return true;
+      }
+    }
+  };
+
+  // Return either blue or black like button based on if post was already liked
+  createLikeButton = (post) => {
+    let likeButton;
+
+    if (!this.checkLikedPost(post)) {
+      likeButton = (
+        <img
+          src={LikeIcon}
+          alt="LikeIcon"
+          value={post.id}
+          onClick={(e) => this.likeHandleClick(e, post.id)}
+          className={classes.LikeIcon}
+        ></img>
+      );
     } else {
-      event.target.classList.add(classes.LikeButtonClicked);
-  }
-}
+      likeButton = (
+        <img
+          src={LikeBlueIcon}
+          alt="Blue Like Icon"
+          value={post.id}
+          onClick={(e) => this.likeHandleClick(e, post.id)}
+          className={classes.LikeIcon}
+        ></img>
+      );
+    }
 
-  showModalHandler = (post) => {
-    let currentState = this.state.showModal;
-    this.setState(
-      {showModal: !currentState,
-      modalRecipe: post});
-  }
-
-  hideModalHandler = () => {
-    this.setState({showModal: false});
-  }
+    return likeButton;
+  };
 
   render() {
     let recipes;
@@ -81,45 +95,57 @@ class Posts extends Component {
     }
 
     let posts;
-    if (recipes) {
-      posts = recipes.results.map(post => (
+    //console.log("recipe length: " + recipes.length);
+    //console.log(JSON.stringify(recipes));
+    if (recipes && recipes.length !== 0) {
+      posts = recipes.results.map((post) => (
         <div key={post.id} className={classes.Posts}>
-          <NavLink 
-            to="#"
-            onClick={() => this.showModalHandler(post)}>
+          <NavLink to={`/user/${post.user}`} className={classes.userLink}>
+            {post.user}
+          </NavLink>
+          <NavLink to={`post-detail/${post.id}`}>
             <img src={post.image} alt="recipe" className={classes.Images} />
           </NavLink>
-      <p>{post.name} by&nbsp;
-        <button onClick={this.props.onClick} value={post.user} className={classes.UserBtn}>{post.user}</button>
-        <button onClick={this.likeHandleClick} value={post.id} className={classes.LikeButton}>
-            <img src={Like} className={classes.LikeIcon} alt="like button"/>
-              &nbsp;{post.likes.length}
-        </button>
-      </p>
-      <p className={classes.Date}>Posted {post.date.substr(0,10)}</p>
+          <div className={classes.nameAndIconDiv}>
+            <div className={classes.recipeNameDiv}>
+              <NavLink
+                to={`post-detail/${post.id}`}
+                className={classes.recipeNameText}
+              >
+                {post.name[0].toUpperCase() +
+                  post.name.substr(1, post.name.length)}
+              </NavLink>
+              <span className={classes.Date}>
+                <br />
+                -Posted {post.date.substr(0, 10)}
+              </span>
+            </div>
+            <div className={classes.iconDiv}>
+              <button value={post.id} className={classes.LikeButton}>
+                {this.createLikeButton(post)}
+                &nbsp;{post.likes.length}
+              </button>
+              <button className={classes.LikeButton}>
+                <img
+                  src={CommentIcon}
+                  className={classes.LikeIcon}
+                  alt="comment icon"
+                  value={post.id}
+                  onClick={(e) => this.commentHandleClick(e, post.id)}
+                />
+                &nbsp;0
+              </button>
+            </div>
+          </div>
         </div>
-    ))
+      ));
     }
 
-    let modal = null;
-    if (this.state.showModal) {
-      modal = (
-        <Modal
-          show="true"
-          closed={this.hideModalHandler}
-          recipe={this.state.modalRecipe}
-          showFollowers = "" />);
-    }
-    return (
-      <Aux>
-        {posts}
-        {modal}
-      </Aux>
-    )
+    return <div>{posts}</div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
     selectedPage: state.navbar.selectedPage,
@@ -128,13 +154,20 @@ const mapStateToProps = state => {
     popularRecipes: state.popularRecipes.recipes,
     profileRecipes: state.profileRecipes.recipes,
     otherProfileRecipes: state.otherProfileRecipes.recipes,
+
+    error: state.likeRecipe.error,
+    loading: state.likeRecipe.loading,
+
+    username: state.profileInfo.username,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    likeRecipe: (token, recipeId) =>
+      dispatch(actions.likeRecipe(token, recipeId)),
+      getProfileInfo: (token) => dispatch(actions.profileInfo(token)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

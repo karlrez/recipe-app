@@ -1,0 +1,143 @@
+
+.recipeWrapper {
+    margin-left: -2vw;
+    width: 99.5vw;
+    padding: 0px 0 50px 0;
+    border-style: solid;
+    border-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #fffff4;
+}
+
+.recipeImage {
+    width:100%;
+    max-width: 100%;
+}
+
+.profilePicDiv {
+    width: 80%;
+    height: 60px;
+    float: left;
+    padding-top: 20px;
+}
+
+.profilePic {
+    max-height: 45px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.usernameDiv {
+    width: 80%;
+    height: 50px; 
+    padding-top: 30px;  
+    font-size: 24px; 
+    text-align: left;
+}
+
+.userNameLink {
+    text-decoration: none;
+}
+
+.dateText {
+    text-align: left;
+    font-size: 16px;
+}
+
+.iconDiv {
+    width: 45%;
+    float: right;
+    height: 60px; 
+    font-size: 18px;
+    text-align: right;
+}
+
+.LikeButton {
+    background: none;
+    border: none;
+    width: 80px;
+    font-size: 16px;
+    padding-left: 0px;
+}
+
+.LikeIcon {
+    width: 30px;
+    color: #0AFFED;
+}
+
+.recipeNameDiv {
+    width: 95vw;
+    height: auto;
+    display: inline-block;
+    margin-bottom: 18px;
+    overflow-x: auto;
+}
+
+.recipeName {
+    font-family: 'Pacifico', cursive;
+    text-decoration: underline;
+    font-size: 32px;
+}
+
+.tags {
+    margin-left: 6px;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.textboxes {
+    width: 80vw;
+    min-height: 100px;
+    height: auto;
+    overflow-x: auto;
+    margin-left: 8%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #fffff4;
+}
+
+@media only screen and (min-width: 600px) {
+    .wrapper {
+        
+    }
+
+    .recipeWrapper {
+        margin-left: 0px;
+        width: 100%;
+        min-width: 500px;
+        max-width: 800px;
+        padding: 0px 0 50px 0;
+        border-style: solid;
+        border-width: 1px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .recipeNameDiv {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        display: inline-block;
+        margin-bottom: 18px;
+        overflow-x: auto;
+        display: block;
+        text-align: left;
+    }
+
+    .textboxes {
+        margin-left: 0;
+        width: 100%;
+        max-width: 800px;
+        min-height: 100px;
+        height: auto;
+        overflow-x: auto;
+        border-style: solid;
+        border-width: 1px;
+        background-color: #fffff4;
+        text-align: left;
+    }
+  }

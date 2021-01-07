@@ -2,8 +2,8 @@
   overflow: hidden;
   background-color: #E6EED6;
   position: fixed;
-  bottom: 0;
-  width: 100%;
+  bottom: 0; left: 0; right: 0;
+  width: 102%;
   display:table;
   table-layout: fixed;
 }

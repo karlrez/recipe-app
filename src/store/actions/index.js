@@ -53,3 +53,11 @@ export {
 export {
     getFollowers,
 } from './getFollowers';
+
+export {
+    recipeDetail,
+} from './recipeDetail';
+
+export {
+    likeRecipe,
+} from './likeRecipe';

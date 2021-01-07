@@ -1,57 +1,101 @@
 .Posts {
-    /*border-style: solid;
-    border-width: 1px;
-    border-color: #333333;*/
-    margin-top: 0px;
-    margin-bottom: 10px;
-    padding: 10px;
+  margin-left: -2vw;
+  margin-bottom: 40px;
+  padding: 0px 0 0px 0;
+  background-color: #fffff4;
 }
 
 .Images {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    height: 300px;
-    width: auto;
-    max-width: 100%;
+  margin-left: -2%;
+  display: block;
+  max-height: 400px;
+  width: 102%;
 }
 
-.UserBtn {
-    background: none;
-    border-style: solid;
-    border-width: 1px;
-    font-size: 18px;
-    font-weight: bold;
+.userLink {
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  min-width: 80px;
+  padding: 6px;
+  text-decoration: none;
+  color: black;
+  background-color: #EEEEEE;
+  margin-bottom: 10px;
+}
+
+.userLink:hover {
+  background-color: #BBC5AA;
+  cursor: pointer;
+}
+
+.nameAndIconDiv {
+    overflow: hidden;
+  }
+
+.recipeNameDiv {
+  float: left;
+  max-width: 60%;
+  min-width: 60%;
+  font-size: 24px; 
+}
+
+.recipeNameText {
+  font-family: 'Pacifico', cursive;
+  text-decoration: underline;
+  color: black;
+}
+
+.iconDiv {
+  float: right;
+  text-align: right;
+  min-width: 35%;
+  font-size: 18px;
 }
 
 .LikeButton {
-    background: none;
-    border: none;
-    width: 60px;
-    font-size: 16px;
-}
-
-.LikeButtonClicked {
-    background-color: #0C6291;
+  background: none;
+  border: none;
+  width: 60px;
+  font-size: 16px;
+  
 }
 
 .LikeIcon {
-    width: 20px;
-    color: #0AFFED;
+  width: 20px;
+  cursor: pointer;
 }
 
 .Date {
-    font-size: 16px;
-    margin-top: 0;
+  font-size: 16px;
+  margin-top: 0;
 }
 
 @media only screen and (min-width: 600px) {
-    .Images {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        height: 500px;
-        width: auto;
-        max-width: 100%;
-    }
+  .Images {
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 100%;
+  }
+
+  .Posts {
+    margin: 0 0 40px 0;
+    padding: 0px 0px 0px 0px;
+    
+  }
+
+  .UserBtn {
+    display: block;
+  }
+
+  .recipeNameDiv {
+    text-align: left;
+    max-width: 60%;
+    min-width: 60%;
+    font-size: 24px; 
+  }
 }

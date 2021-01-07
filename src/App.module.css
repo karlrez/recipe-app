@@ -1,27 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url('<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">');
 
+body {
+  
+}
 
-.main {
-  font-family: 'Raleway', sans-serif;
+.mainLogin {
+  /**gradients at: https://cssgradient.io/swatches/*/
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  font-family: "Raleway", sans-serif;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   font-size: 18px;
-  margin-top: 60px;
-  margin-left: -8px;
-  margin-right: -8px;
-  }
+}
+
+.mainLayout {
+  /**gradients at: https://cssgradient.io/swatches/*/
+  font-family: "Raleway", sans-serif;
+  height: 100%;
+  position: absolute;
+  left: 8px;
+  font-size: 18px;
+}
 
 .routesDiv {
   margin-bottom: 70px;
 }
 
 input {
-  height: 30px;
+  height: 35px;
+  border-radius: 8px;
 }
-  
+
+button {
+  border-radius: 8px;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+}
+
 @media only screen and (min-width: 600px) {
-  .main {
-    margin-left: 156px; /* Same as the width of the sidenav */
-    margin-top: 60px;
+  .mainLayout {
+    /* resize to fit navbar and toolbar */
+    margin-left: 20%;
     padding: 0px 16px;
   }
 
@@ -29,8 +55,4 @@ input {
     text-align: center;
     min-width: 800px;
   }
-}
-
-h1 {
-    font-family: 'Pacifico', cursive;
 }

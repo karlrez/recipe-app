@@ -1,0 +1,22 @@
+.Wrapper {
+   
+}
+
+.Form {
+    
+}
+
+.formInput {
+    width: 100%;
+}
+
+.submitBtn {
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .Wrapper {
+        margin: auto;
+        max-width: 75%;
+    }
+  }
