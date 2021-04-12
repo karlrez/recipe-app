@@ -8,7 +8,7 @@
 .Images {
   margin-left: -2%;
   display: block;
-  max-height: 400px;
+  max-height: auto;
   width: 102%;
 }
 
@@ -23,28 +23,28 @@
   padding: 6px;
   text-decoration: none;
   color: black;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   margin-bottom: 10px;
 }
 
 .userLink:hover {
-  background-color: #BBC5AA;
+  background-color: #bbc5aa;
   cursor: pointer;
 }
 
 .nameAndIconDiv {
-    overflow: hidden;
-  }
+  overflow: hidden;
+}
 
 .recipeNameDiv {
   float: left;
   max-width: 60%;
   min-width: 60%;
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 .recipeNameText {
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
   text-decoration: underline;
   color: black;
 }
@@ -62,7 +62,6 @@
   outline: none;
   width: 60px;
   font-size: 16px;
-  
 }
 
 .LikeIcon {
@@ -87,7 +86,6 @@
   .Posts {
     margin: 0 0 40px 0;
     padding: 0px 0px 0px 0px;
-    
   }
 
   .UserBtn {
@@ -98,6 +96,6 @@
     text-align: left;
     max-width: 60%;
     min-width: 60%;
-    font-size: 24px; 
+    font-size: 24px;
   }
 }
