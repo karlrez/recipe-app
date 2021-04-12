@@ -1,0 +1,2264 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /user/manage/info:
+    get:
+      operationId: RetrieveUser
+      description: User can update, view, or delete their own info if authenticated
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 255
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  profile_pic:
+                    type: string
+                    format: binary
+                required:
+                - email
+                - username
+          description: ''
+    put:
+      operationId: UpdateUser
+      description: User can update, view, or delete their own info if authenticated
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                email:
+                  type: string
+                  format: email
+                  maxLength: 255
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                password:
+                  type: string
+                  writeOnly: true
+                  maxLength: 128
+                  minLength: 5
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+              required:
+              - email
+              - username
+              - password
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 255
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  profile_pic:
+                    type: string
+                    format: binary
+                required:
+                - email
+                - username
+          description: ''
+    patch:
+      operationId: PartialUpdateUser
+      description: User can update, view, or delete their own info if authenticated
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                email:
+                  type: string
+                  format: email
+                  maxLength: 255
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                password:
+                  type: string
+                  writeOnly: true
+                  maxLength: 128
+                  minLength: 5
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 255
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  profile_pic:
+                    type: string
+                    format: binary
+                required:
+                - email
+                - username
+          description: ''
+    delete:
+      operationId: DestroyUser
+      description: User can update, view, or delete their own info if authenticated
+      parameters: []
+      responses:
+        '204':
+          description: ''
+  /user/manage/profile:
+    get:
+      operationId: RetrieveUserProfile
+      description: User can update their own profile info if authenticated
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+    put:
+      operationId: UpdateUserProfile
+      description: User can update their own profile info if authenticated
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+    patch:
+      operationId: PartialUpdateUserProfile
+      description: User can update their own profile info if authenticated
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+  /user/search-user/{username}/:
+    get:
+      operationId: RetrieveUser
+      description: To view a user profile
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+  /user/search-users/{username}:
+    get:
+      operationId: RetrieveUserProfile
+      description: To query for a list of users by username
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+  /user/{username}/update-profile:
+    get:
+      operationId: RetrieveUserProfile
+      description: User can update their own profile info if authenticated
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+    put:
+      operationId: UpdateUserProfile
+      description: User can update their own profile info if authenticated
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+    patch:
+      operationId: PartialUpdateUserProfile
+      description: User can update their own profile info if authenticated
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  followers:
+                    type: string
+                    readOnly: true
+                  following:
+                    type: string
+                    readOnly: true
+                  date_joined:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    format: binary
+          description: ''
+  /user/{username}/followers:
+    get:
+      operationId: listFollows
+      description: To view list of a users followers
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        username:
+                          type: string
+                          readOnly: true
+                        profile_pic:
+                          type: string
+                          format: binary
+                          readOnly: true
+          description: ''
+  /user/{username}/following:
+    get:
+      operationId: listFollows
+      description: To view a list of who a user follows
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        username:
+                          type: string
+                          readOnly: true
+                        profile_pic:
+                          type: string
+                          format: binary
+                          readOnly: true
+          description: ''
+  /user/{username}/follow:
+    get:
+      operationId: listFollowUsers
+      description: To follow/unfollow a user
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /recipes/all-recipes:
+    get:
+      operationId: listRecipes
+      description: Viewset for all recipes
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                        ingredients:
+                          type: array
+                          items:
+                            type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        time_minutes:
+                          type: integer
+                        time_hours:
+                          type: integer
+                        price:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 1000
+                          minimum: -1000
+                        link:
+                          type: string
+                          maxLength: 255
+                        instructions:
+                          type: string
+                        image:
+                          type: string
+                          format: binary
+                        date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        likes:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - name
+                      - ingredients
+                      - tags
+                      - price
+                      - image
+                      - likes
+          description: ''
+  /recipes/my-recipes:
+    get:
+      operationId: listStringRecipes
+      description: Viewset for current users recipes
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                        ingredients:
+                          type: array
+                          items:
+                            type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        time_minutes:
+                          type: integer
+                        time_hours:
+                          type: integer
+                        price:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 1000
+                          minimum: -1000
+                        link:
+                          type: string
+                          maxLength: 255
+                        instructions:
+                          type: string
+                        image:
+                          type: string
+                          format: binary
+                        date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        likes:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - name
+                      - ingredients
+                      - tags
+                      - price
+                      - image
+                      - likes
+          description: ''
+  /recipes/retrieve-update/{id}:
+    get:
+      operationId: RetrieveRecipe
+      description: To view an individual recipe
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this recipe.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+    put:
+      operationId: UpdateRecipe
+      description: To view an individual recipe
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this recipe.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                time_minutes:
+                  type: integer
+                time_hours:
+                  type: integer
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 1000
+                  minimum: -1000
+                link:
+                  type: string
+                  maxLength: 255
+                instructions:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+                likes:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - name
+              - ingredients
+              - tags
+              - price
+              - image
+              - likes
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+    patch:
+      operationId: PartialUpdateRecipe
+      description: To view an individual recipe
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this recipe.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                time_minutes:
+                  type: integer
+                time_hours:
+                  type: integer
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 1000
+                  minimum: -1000
+                link:
+                  type: string
+                  maxLength: 255
+                instructions:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+                likes:
+                  type: array
+                  items:
+                    type: string
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/view-create-ingredients/:
+    get:
+      operationId: listIngredients
+      description: Viewset for all ingredients
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                      required:
+                      - name
+          description: ''
+    post:
+      operationId: CreateIngredient
+      description: Viewset for all ingredients
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                required:
+                - name
+          description: ''
+  /recipes/ingredient-detail/{name}:
+    get:
+      operationId: RetrieveIngredient
+      description: Viewset for retrieving ingredient details
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                required:
+                - name
+          description: ''
+  /recipes/view-create-tags/:
+    get:
+      operationId: listTags
+      description: Viewset for creating or listing all tags
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                      required:
+                      - name
+          description: ''
+    post:
+      operationId: CreateTag
+      description: Viewset for creating or listing all tags
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+              required:
+              - name
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                required:
+                - name
+          description: ''
+  /recipes/tag-detail/{name}:
+    get:
+      operationId: RetrieveTag
+      description: Viewset for retrieving tag details
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                required:
+                - name
+          description: ''
+  /recipes/like/{recipe_id}:
+    get:
+      operationId: RetrieveLikeRecipe
+      description: Add like to a recipe
+      parameters:
+      - name: recipe_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /recipes/likes/{recipe_id}:
+    get:
+      operationId: RetrieveHelperUser
+      description: Viewset to view users that liked a recipe
+      parameters:
+      - name: recipe_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    maxLength: 25
+                  profile_pic:
+                    type: string
+                    format: binary
+                required:
+                - username
+          description: ''
+  /recipes/popular/:
+    get:
+      operationId: listStringRecipes
+      description: Viewset top 10 recipes in order of number of likes
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                        ingredients:
+                          type: array
+                          items:
+                            type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        time_minutes:
+                          type: integer
+                        time_hours:
+                          type: integer
+                        price:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 1000
+                          minimum: -1000
+                        link:
+                          type: string
+                          maxLength: 255
+                        instructions:
+                          type: string
+                        image:
+                          type: string
+                          format: binary
+                        date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        likes:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - name
+                      - ingredients
+                      - tags
+                      - price
+                      - image
+                      - likes
+          description: ''
+  /recipes/feed/:
+    get:
+      operationId: listStringRecipes
+      description: Viewset to view recipes from users they follow
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 255
+                        ingredients:
+                          type: array
+                          items:
+                            type: string
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                        time_minutes:
+                          type: integer
+                        time_hours:
+                          type: integer
+                        price:
+                          type: number
+                          multipleOf: 0.01
+                          maximum: 1000
+                          minimum: -1000
+                        link:
+                          type: string
+                          maxLength: 255
+                        instructions:
+                          type: string
+                        image:
+                          type: string
+                          format: binary
+                        date:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        likes:
+                          type: array
+                          items:
+                            type: string
+                      required:
+                      - name
+                      - ingredients
+                      - tags
+                      - price
+                      - image
+                      - likes
+          description: ''
+  /recipes/user/{username}/:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list a users recipes
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/tag/{tag}:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list recipes with a specified tag
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/ingredients/{i1}/:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list recipes with specified ingredients
+      parameters:
+      - name: i1
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/ingredients/{i1}/{i2}/:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list recipes with specified ingredients
+      parameters:
+      - name: i1
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: i2
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/ingredients/{i1}/{i2}/{i3}/:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list recipes with specified ingredients
+      parameters:
+      - name: i1
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: i2
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: i3
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /recipes/name/{name}:
+    get:
+      operationId: RetrieveStringRecipe
+      description: Viewset to list recipes with specified name
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  likes:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - name
+                - ingredients
+                - tags
+                - price
+                - image
+                - likes
+          description: ''
+  /comments/recipe/{recipe_id}/:
+    get:
+      operationId: RetrieveComment
+      description: Comment viewset for a recipe
+      parameters:
+      - name: recipe_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    readOnly: true
+                  recipe:
+                    type: string
+                    readOnly: true
+                  comment_text:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - comment_text
+          description: ''
+  /user/create:
+    post:
+      operationId: CreateUser
+      description: Create a new user in the system
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                email:
+                  type: string
+                  format: email
+                  maxLength: 255
+                username:
+                  type: string
+                  maxLength: 25
+                  minLength: 3
+                full_name:
+                  type: string
+                  maxLength: 50
+                title:
+                  type: string
+                  maxLength: 25
+                password:
+                  type: string
+                  writeOnly: true
+                  maxLength: 128
+                  minLength: 5
+                bio:
+                  type: string
+                profile_pic:
+                  type: string
+                  format: binary
+              required:
+              - email
+              - username
+              - password
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 255
+                  username:
+                    type: string
+                    maxLength: 25
+                    minLength: 3
+                  full_name:
+                    type: string
+                    maxLength: 50
+                  title:
+                    type: string
+                    maxLength: 25
+                  bio:
+                    type: string
+                  profile_pic:
+                    type: string
+                    format: binary
+                required:
+                - email
+                - username
+          description: ''
+  /user/token:
+    post:
+      operationId: CreateCreateToken
+      description: Create a new auth token for user
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /recipes/create-recipe:
+    post:
+      operationId: CreateRecipe
+      description: Viewset for creating recipes
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                ingredients:
+                  type: array
+                  items:
+                    type: integer
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                time_minutes:
+                  type: integer
+                time_hours:
+                  type: integer
+                price:
+                  type: number
+                  multipleOf: 0.01
+                  maximum: 1000
+                  minimum: -1000
+                link:
+                  type: string
+                  maxLength: 255
+                instructions:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+              required:
+              - name
+              - ingredients
+              - tags
+              - image
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  name:
+                    type: string
+                    maxLength: 255
+                  ingredients:
+                    type: array
+                    items:
+                      type: integer
+                  tags:
+                    type: array
+                    items:
+                      type: integer
+                  time_minutes:
+                    type: integer
+                  time_hours:
+                    type: integer
+                  price:
+                    type: number
+                    multipleOf: 0.01
+                    maximum: 1000
+                    minimum: -1000
+                  link:
+                    type: string
+                    maxLength: 255
+                  instructions:
+                    type: string
+                  image:
+                    type: string
+                    format: binary
+                required:
+                - name
+                - ingredients
+                - tags
+                - image
+          description: ''
+  /comments/create-comment/{recipe_id}/:
+    post:
+      operationId: CreateComment
+      description: Create a comment on a recipe
+      parameters:
+      - name: recipe_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                comment_text:
+                  type: string
+              required:
+              - comment_text
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  profile_pic:
+                    type: string
+                    readOnly: true
+                  recipe:
+                    type: string
+                    readOnly: true
+                  comment_text:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                - comment_text
+          description: ''
