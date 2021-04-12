@@ -23,4 +23,4 @@ To migrate any changes to the db:
 
 And then you can view and interact with the endpoints at 127.0.0.1:8000
 
-![Alt text](app/media/screenshot.png?raw=true "screenshot")
+![Alt text](server/recipe-rest-api/app/media/screenshot.png?raw=true "screenshot")
